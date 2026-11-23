@@ -1,0 +1,20 @@
+# Core data work
+duckdb>=1.1
+pandas>=2.2
+pyarrow>=17.0
+
+# Downloads
+requests>=2.32
+
+# Forecasting (Phase 6)
+statsmodels>=0.14
+
+# Exploration notebooks (Phase 2)
+jupyter>=1.0
+matplotlib>=3.9
+
+# Data-quality tests
+pytest>=8.0
+
+# Streamlit web version (Phase 8, optional)
+# streamlit>=1.40

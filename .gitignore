@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Data: raw downloads and cleaned intermediates are large and re-creatable
+data/raw/
+data/staging/
+*.duckdb
+*.duckdb.wal
+
+# Power BI backups / temp files
+dashboard/*.pbix.bak
+dashboard/~$*
+*.pbix.tmp
+
+# Secrets and local config
+.env
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
