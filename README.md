@@ -113,7 +113,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe src\check_remote.py   # smoke test: DuckDB reads PriceCatcher over HTTPS
 .\.venv\Scripts\python.exe src\download.py       # last 24 months into data/raw (add --all for 2022 onwards)
 .\.venv\Scripts\python.exe src\checks.py         # data-quality checks
-.\.venv\Scripts\python.exe srcuild.py          # run sql/ files: clean 47M rows (~10 s)
+.\.venv\Scripts\python.exe src\build.py          # run sql/ files: clean 47M rows (~10 s)
 .\.venv\Scripts\python.exe -m pytest             # tests
 ```
 
