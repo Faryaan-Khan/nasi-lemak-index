@@ -160,3 +160,9 @@ definitions and the official festival dates first, so they are built in Phase 4.
 "I aggregated 47 million prices into a small star schema of medians, only reporting a figure when
 at least three shops back it, and published the large tables as nightly release files so the
 git history stays small."
+
+**Fix after the first cloud run:** the 25th/75th percentiles came out one cent different on
+GitHub's Linux server than on my Windows laptop (floating-point rounding when interpolating
+between two prices), which would have caused a noisy commit every day. They now use
+`quantile_disc`, which returns an actual observed price, so results are identical everywhere.
+Week and month columns are now plain dates instead of timestamps.

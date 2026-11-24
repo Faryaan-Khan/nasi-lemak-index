@@ -57,8 +57,8 @@ COPY (
     SELECT item_code,
            week_start,
            round(median(price), 2)          AS median_price,
-           round(quantile_cont(price, 0.25), 2) AS p25_price,
-           round(quantile_cont(price, 0.75), 2) AS p75_price,
+           quantile_disc(price, 0.25)       AS p25_price,  -- an actual observed price (no interpolation), so results are identical on every computer
+           quantile_disc(price, 0.75)       AS p75_price,
            COUNT(*)                         AS n_obs,
            COUNT(DISTINCT premise_code)     AS n_shops,
            COUNT(DISTINCT date)             AS n_days   -- < 7 means a partial or patchy week

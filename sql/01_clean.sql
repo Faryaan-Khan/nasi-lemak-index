@@ -70,8 +70,8 @@ GROUP BY ALL;
 COPY (
     SELECT
         f.date,
-        date_trunc('week', f.date)  AS week_start,   -- weeks start on Monday
-        date_trunc('month', f.date) AS month,
+        CAST(date_trunc('week', f.date) AS DATE)  AS week_start,   -- weeks start on Monday
+        CAST(date_trunc('month', f.date) AS DATE) AS month,
         f.premise_code,
         p.premise_type,
         p.state,
