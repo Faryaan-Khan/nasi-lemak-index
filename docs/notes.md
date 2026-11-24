@@ -65,3 +65,51 @@ with plain SQL on a laptop, and I wrote down every data quirk before cleaning an
 **Interview one-liner**
 "The pipeline refreshes itself daily on GitHub Actions, downloads only what changed using ETags,
 and refuses to publish if data-quality checks fail."
+
+## Phase 2: Explore and clean
+
+**What I did**
+- `notebooks/01_profile.ipynb` profiles the 47M raw rows with DuckDB: date coverage, shops per
+  type and state, items per category, price extremes, and the result of the outlier rule.
+- `sql/01_clean.sql` builds the clean table `data/staging/prices_clean.parquet` (47,365,287 rows,
+  ~270 MB) plus tidy `dim_item` and `dim_premise` tables.
+- `src/build.py` runs every file in `sql/` in order. The whole clean step takes ~10 seconds.
+- `tests/test_clean.py` adds 7 tests on the cleaned data (no placeholders, no rows lost, names
+  trimmed, East Malaysia defined correctly, outlier share small, 100x typos all flagged).
+
+**What the profiling found**
+- **Survey changed in mid-2025:** shops covered jumped from ~1,670 to ~2,390 in July 2025, and
+  the item list shrank from ~515 to ~345 in August 2025. Trends must compare like with like.
+- **No cooked food in recent data:** restaurants and food courts are in the shop list but have
+  zero prices in the last 24 months. Active shop types: supermarkets (53% of prices), wet markets,
+  hypermarkets, minimarts, sundry shops, and a few wholesalers.
+- **Fresh produce dominates:** chicken, fish, vegetables and eggs are ~61% of all named prices.
+- **Unknown items:** 41 item codes (1.9% of rows) are not in the item lookup, so we can't name them.
+- **Typos:** the highest prices (RM 6,000 to 8,000 for baby formula that normally costs ~RM 80) are
+  missing decimal points, i.e. 100x too high.
+- **Trailing spaces:** 338 wet markets are labelled `Pasar Basah ` (with a space) and 22 `Pasar Basah`.
+- Clean on other fronts: no duplicate prices for the same shop, item and day, no zero or missing prices.
+
+**Cleaning decisions and why**
+| Decision | Why |
+|---|---|
+| Drop placeholder shop/item `-1` | They have no name or location, so they can't be analysed |
+| `trim()` all text | Stops one category splitting into two because of a hidden space |
+| Keep unknown items, flag `item_known = false` | Deleting real data silently is worse than labelling it |
+| **Flag** outliers, never delete | The decision stays visible and reversible; marts simply filter `NOT is_outlier` |
+| Outlier = more than 3 x spread from the item's monthly median | Medians and IQR aren't pulled around by the typos themselves |
+| Spread = larger of IQR and 10% of median | Price-controlled items (eggs) often have IQR = 0, which would flag a 10-sen difference |
+| Add `region` (East = Sabah, Sarawak, Labuan) | Needed for the "is East Malaysia more expensive?" question |
+| Add `week_start` and `month` | Phase 3 marts group by these |
+
+Result: **336,323 prices flagged (0.71%)**, including every 100x typo. The baby and dry goods
+groups have the most flags (~2% and ~1%), which fits pack-size and unit mix-ups.
+
+**Performance lesson**
+The first version sorted all 47M rows before writing them and took 7 minutes. Removing the
+unnecessary `ORDER BY` brought it to 10 seconds. Sorting is expensive; only do it when needed.
+
+**Interview one-liner**
+"I profiled 47 million rows before touching them, found that the survey's coverage changed in
+mid-2025 and that some prices were 100 times too high, and flagged outliers with a robust
+median-and-IQR rule instead of deleting them, so every cleaning decision is visible and reversible."

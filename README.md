@@ -17,8 +17,8 @@ price records** from over 2,100 shops in every state, collected by KPDN field of
 by DOSM. Build a shopping basket and see where in Malaysia it's cheapest, which items spike before
 festive seasons, and which store types charge more for the same item.
 
-> **Status (Nov 2026):** the data pipeline is live and refreshes itself every night. Data profiling
-> and cleaning (Phase 2) is in progress. Dashboard screenshots, headline insights and a live link
+> **Status (Nov 2026):** the data pipeline is live and refreshes itself every night, and the
+> 47M rows are profiled and cleaned (Phase 2). Aggregated tables (Phase 3) are next. Dashboard screenshots, headline insights and a live link
 > will appear here as each phase lands. See the [roadmap](#roadmap).
 
 ---
@@ -48,7 +48,7 @@ misleading.
 - **Collection gaps are real:** some months are missing days (October 2026 starts on the 10th),
   so every weekly figure carries an observation count.
 - Data quirks found and documented before cleaning: placeholder `-1` shop and item codes,
-  inconsistent category labels, and ~1.5% of rows with item codes missing from the item lookup.
+  inconsistent category labels, and ~1.9% of rows with item codes missing from the item lookup.
   Full list in [`docs/schema.md`](docs/schema.md).
 
 ## How it works
@@ -113,6 +113,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe src\check_remote.py   # smoke test: DuckDB reads PriceCatcher over HTTPS
 .\.venv\Scripts\python.exe src\download.py       # last 24 months into data/raw (add --all for 2022 onwards)
 .\.venv\Scripts\python.exe src\checks.py         # data-quality checks
+.\.venv\Scripts\python.exe srcuild.py          # run sql/ files: clean 47M rows (~10 s)
 .\.venv\Scripts\python.exe -m pytest             # tests
 ```
 
@@ -124,7 +125,7 @@ On macOS or Linux, use `.venv/bin/python` and forward slashes instead.
 |---|---|---|
 | 0 | Setup, folder structure, remote parquet smoke test | ✅ Done |
 | 1 | Resumable downloader, data-quality checks, daily GitHub Actions refresh | ✅ Done |
-| 2 | Profile the data and clean it in SQL (placeholders, outliers, name standardisation) | 🔄 In progress |
+| 2 | Profile the data and clean it in SQL (placeholders, outliers, name standardisation) | ✅ Done |
 | 3 | Marts: weekly item × district medians, store-type premiums, basket costs, festive windows | ⏳ Planned |
 | 4 | Basket definitions (Nasi Lemak, Student, Family) and an official festive calendar | ⏳ Planned |
 | 5 | Analysis: cheapest regions, festive spikes, store-type premium, East vs West Malaysia | ⏳ Planned |
@@ -160,8 +161,11 @@ measuring inflation. The Consumer Price Index (CPI) is Malaysia's official infla
 - Coverage changes over time (items and shops are added and dropped), so long-run trends are only
   reported for items present throughout.
 - Some days and weeks are thin or missing; figures show the observation count behind them.
-- Restaurants and food courts appear as shop types but sell cooked food, so like-for-like grocery
-  comparisons will exclude them (to be confirmed in Phase 2).
+- Restaurants and food courts appear as shop types but have no prices in the last 24 months, so
+  the analysis covers grocery retail only (supermarkets, hypermarkets, minimarts, wet markets,
+  sundry shops).
+- 0.71% of prices are flagged as outliers (typos, unit mix-ups) and left out of the figures; 1.9%
+  have item codes the government lookup doesn't name, so they're excluded from item-level results.
 
 More detail in [`docs/schema.md`](docs/schema.md) and [`docs/notes.md`](docs/notes.md).
 
