@@ -3,7 +3,14 @@
 Build a shopping basket and see where in Malaysia it's cheapest, which items spike before
 Hari Raya and CNY, and which store types charge more for the same item.
 
-> **Status:** Phase 0 (setup) done. Dashboard, insights and screenshots will land here in later phases.
+> **Status:** Phase 1 done: data downloads and refreshes itself daily. Dashboard, insights and
+> screenshots will land here in later phases.
+
+![Daily data update](https://github.com/Faryaan-Khan/nasi-lemak-index/actions/workflows/daily-update.yml/badge.svg)
+
+**Data freshness:** a GitHub Action downloads the latest PriceCatcher data every day at 10 pm
+Malaysia time, runs data-quality checks and updates
+[`data/marts/coverage_monthly.csv`](data/marts/coverage_monthly.csv) (rows and date range per month).
 
 ## What it shows (planned)
 1. **Where it's cheapest**: basket cost by state and district (map + ranking)
@@ -20,6 +27,9 @@ Power BI Desktop · Streamlit (optional web version)
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe src\check_remote.py   # smoke test: reads PriceCatcher over HTTPS
+.\.venv\Scripts\python.exe src\download.py       # last 24 months into data/raw (add --all for everything)
+.\.venv\Scripts\python.exe src\checks.py         # data-quality checks
+.\.venv\Scripts\python.exe -m pytest             # tests
 ```
 
 ## Project layout

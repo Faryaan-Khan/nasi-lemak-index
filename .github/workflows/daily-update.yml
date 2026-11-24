@@ -1,0 +1,66 @@
+# Daily data refresh, running on GitHub's servers (your laptop can be off).
+#
+# What it does, in order:
+#   1. Restores yesterday's downloaded files from GitHub's cache (so only new data is fetched)
+#   2. Runs src/download.py  -> fetches only files whose fingerprint (ETag) changed
+#   3. Runs the tests and src/checks.py -> stops here if anything looks wrong
+#   4. Commits the small summary tables in data/marts/ if they changed
+#
+# Raw data is never committed (it's in .gitignore); it only lives in the cache.
+# You can also start it by hand: GitHub repo -> Actions -> Daily data update -> Run workflow.
+
+name: Daily data update
+
+on:
+  schedule:
+    - cron: "0 14 * * *" # 14:00 UTC = 10 pm Malaysia time; data.gov.my updates around 12:00 UTC
+  workflow_dispatch: # adds a manual "Run workflow" button
+
+permissions:
+  contents: write # needed to commit the updated tables
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the few libraries this job needs
+        run: pip install duckdb requests pytest
+
+      - name: Restore previously downloaded raw files
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: pricecatcher-raw-${{ github.run_id }}
+          restore-keys: pricecatcher-raw-
+
+      - name: Download new or changed files
+        run: python src/download.py --months 24
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Run data-quality checks
+        run: python src/checks.py
+
+      - name: Commit updated tables (only if something changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/marts
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Daily data update: $(date -u +%Y-%m-%d)"
+            git push
+          fi
