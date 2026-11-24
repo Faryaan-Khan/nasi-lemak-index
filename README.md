@@ -18,7 +18,8 @@ by DOSM. Build a shopping basket and see where in Malaysia it's cheapest, which 
 festive seasons, and which store types charge more for the same item.
 
 > **Status (Nov 2026):** the data pipeline is live and refreshes itself every night, and the
-> 47M rows are profiled and cleaned (Phase 2). Aggregated tables (Phase 3) are next. Dashboard screenshots, headline insights and a live link
+> 47M rows are profiled, cleaned (Phase 2) and aggregated into dashboard-ready tables (Phase 3).
+> Basket definitions and the festive calendar (Phase 4) are next. Dashboard screenshots, headline insights and a live link
 > will appear here as each phase lands. See the [roadmap](#roadmap).
 
 ---
@@ -81,9 +82,27 @@ Malaysia time** on GitHub's servers:
 1. Restores yesterday's raw files from the Actions cache.
 2. Downloads **only files whose fingerprint (ETag) changed**, usually just the current month.
    A full re-check of 24 months takes about 10 seconds.
-3. Runs the tests and data-quality checks (expected columns, no missing or zero prices, data less
-   than 14 days old). **If anything fails, nothing is published.**
-4. Commits the refreshed summary tables, so the repo always shows current data.
+3. Checks the raw data (expected columns, no missing or zero prices, data less than 14 days old).
+4. Cleans all 47M rows and rebuilds the summary tables with DuckDB SQL.
+5. Runs 28 tests on the cleaned data and summary tables. **If anything fails, nothing is published.**
+6. Commits the small CSV tables and replaces the large ones on the
+   [`data-latest` release](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/tag/data-latest).
+
+## Summary tables
+
+Every figure is a **median** backed by **at least 3 shops**, with the price and shop counts on each row.
+
+| Table | One row per | Rows | Get it |
+|---|---|---|---|
+| `dim_item` | item: name, unit, category | ~500 | [CSV](data/marts/dim_item.csv) |
+| `dim_district` | district: state, region, shops by type | 169 | [CSV](data/marts/dim_district.csv) |
+| `item_national_week` | item × week, all Malaysia | ~34k | [CSV](data/marts/item_national_week.csv) |
+| `item_state_week` | item × state × week | ~417k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_state_week.parquet) |
+| `item_district_week` | item × district × week | ~2.2M | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_district_week.parquet) |
+| `item_premisetype_district_month` | item × store type × district × month | ~825k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_premisetype_district_month.parquet) |
+
+The large tables live on a release that is overwritten nightly, so the git history doesn't grow
+by megabytes every day.
 
 The badge at the top shows whether last night's run passed.
 
@@ -126,7 +145,7 @@ On macOS or Linux, use `.venv/bin/python` and forward slashes instead.
 | 0 | Setup, folder structure, remote parquet smoke test | ✅ Done |
 | 1 | Resumable downloader, data-quality checks, daily GitHub Actions refresh | ✅ Done |
 | 2 | Profile the data and clean it in SQL (placeholders, outliers, name standardisation) | ✅ Done |
-| 3 | Marts: weekly item × district medians, store-type premiums, basket costs, festive windows | ⏳ Planned |
+| 3 | Marts: weekly item × district/state/national medians, store-type × district monthly medians | ✅ Done |
 | 4 | Basket definitions (Nasi Lemak, Student, Family) and an official festive calendar | ⏳ Planned |
 | 5 | Analysis: cheapest regions, festive spikes, store-type premium, East vs West Malaysia | ⏳ Planned |
 | 6 | Forecast for 3–5 key items, ETS vs seasonal-naive baseline, holdout MAPE reported honestly | ⏳ Planned |

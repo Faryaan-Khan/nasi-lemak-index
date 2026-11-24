@@ -113,3 +113,50 @@ unnecessary `ORDER BY` brought it to 10 seconds. Sorting is expensive; only do i
 "I profiled 47 million rows before touching them, found that the survey's coverage changed in
 mid-2025 and that some prices were 100 times too high, and flagged outliers with a robust
 median-and-IQR rule instead of deleting them, so every cleaning decision is visible and reversible."
+
+## Phase 3: Summary tables (marts)
+
+**What I did**
+- `sql/02_marts.sql` turns the 47M clean prices into six small tables in `data/marts/`:
+
+| Table | One row per | Rows | Where it lives |
+|---|---|---|---|
+| `dim_item.csv` | item (name, unit, category) | 507 | git |
+| `dim_district.csv` | district (region, shops of each type) | 169 | git |
+| `item_national_week.csv` | item x week, all Malaysia (median, 25th/75th percentile) | ~34k | git |
+| `item_state_week.parquet` | item x state x week | ~417k | GitHub release |
+| `item_district_week.parquet` | item x district x week | ~2.2M | GitHub release |
+| `item_premisetype_district_month.parquet` | item x store type x district x month | ~825k | GitHub release |
+
+- `tests/test_marts.py` adds 18 tests (one row per key, at least 3 shops behind every figure,
+  no missing or zero prices, every item and district has a name, percentiles in the right order).
+- The daily GitHub Action now also cleans the data, rebuilds the marts and runs all 28 tests
+  before publishing anything.
+
+**Why these choices**
+- **Medians, not means.** A few typo prices can drag an average a long way; a median barely moves.
+- **At least 3 shops behind every figure**, with `n_obs` (prices) and `n_shops` (shops) on every
+  row. One shop's price isn't a "district price". Counting shops, not prices, matters because
+  one shop reports the same item every day.
+- **Outliers and unnamed items are left out** of every mart (they stay flagged in staging).
+- **Codes, not names, in the big tables.** Names live once in `dim_item`; Power BI joins them on
+  `item_code`. This is a star schema: small dimension tables around fact tables.
+- **`n_days` on the national table** shows partial weeks (e.g. the current week).
+- **Big tables go to a GitHub release, not git.** Git keeps every version of every file forever.
+  Committing ~8 MB of changed tables daily would add gigabytes a year. A release called
+  `data-latest` is overwritten each night and has a fixed download link Power BI can read.
+
+**Sanity checks on the numbers (week of 16 Nov 2026)**
+- Chicken (standard, 1 kg): RM 8.49 national median; cheapest state Johor RM 7.99, dearest Sabah
+  RM 12.89.
+- Grade A eggs (30): RM 14.99; Indian onions (1 kg): RM 4.20.
+- First hint for Phase 5: for chicken in the same district and month, wet markets charge more
+  than hypermarkets (median gap ~20%). To be tested properly across items in Phase 5.
+
+**Still to come in Phase 4:** the basket-cost and festive-window tables need the basket
+definitions and the official festival dates first, so they are built in Phase 4.
+
+**Interview one-liner**
+"I aggregated 47 million prices into a small star schema of medians, only reporting a figure when
+at least three shops back it, and published the large tables as nightly release files so the
+git history stays small."

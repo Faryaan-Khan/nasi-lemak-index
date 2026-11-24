@@ -1,0 +1,170 @@
+state,district,region,shops,hypermarkets,supermarkets,minimarkets,wet_markets,sundry_shops
+Johor,Batu Pahat,Peninsular Malaysia,19,3,5,5,2,4
+Johor,Johor Bahru,Peninsular Malaysia,78,12,29,21,6,9
+Johor,Kluang,Peninsular Malaysia,28,1,9,12,2,4
+Johor,Kota Tinggi,Peninsular Malaysia,29,0,9,9,2,8
+Johor,Ledang,Peninsular Malaysia,1,0,0,0,1,0
+Johor,Mersing,Peninsular Malaysia,25,0,9,12,2,2
+Johor,Muar,Peninsular Malaysia,28,1,10,13,2,2
+Johor,Pontian,Peninsular Malaysia,22,0,9,7,2,4
+Johor,Segamat,Peninsular Malaysia,30,0,14,11,2,2
+Johor,Tangkak,Peninsular Malaysia,8,0,4,3,0,1
+Kedah,Baling,Peninsular Malaysia,8,0,3,3,2,0
+Kedah,Kota Setar,Peninsular Malaysia,22,5,8,5,2,2
+Kedah,Kuala Muda,Peninsular Malaysia,23,4,5,9,5,0
+Kedah,Kubang Pasu,Peninsular Malaysia,22,1,7,6,3,5
+Kedah,Kulim,Peninsular Malaysia,16,2,2,8,4,0
+Kedah,Langkawi,Peninsular Malaysia,12,0,2,6,3,1
+Kedah,Padang Terap,Peninsular Malaysia,6,0,1,3,1,1
+Kedah,Pendang,Peninsular Malaysia,6,0,3,1,1,1
+Kedah,Pokok Sena,Peninsular Malaysia,3,0,2,0,1,0
+Kedah,Sik,Peninsular Malaysia,8,0,0,6,2,0
+Kedah,Yan,Peninsular Malaysia,12,0,1,8,3,0
+Kelantan,Bachok,Peninsular Malaysia,18,0,5,11,2,0
+Kelantan,Dabong,Peninsular Malaysia,9,0,0,0,0,9
+Kelantan,Gua Musang,Peninsular Malaysia,19,1,5,2,1,10
+Kelantan,Jeli,Peninsular Malaysia,12,0,0,1,0,11
+Kelantan,Kota Bharu,Peninsular Malaysia,78,7,14,39,9,9
+Kelantan,Kuala Krai,Peninsular Malaysia,14,0,5,2,2,5
+Kelantan,Machang,Peninsular Malaysia,19,0,2,7,1,9
+Kelantan,Pasir Mas,Peninsular Malaysia,19,0,6,1,1,11
+Kelantan,Pasir Puteh,Peninsular Malaysia,16,1,4,8,2,1
+Kelantan,Tanah Merah,Peninsular Malaysia,21,0,4,7,4,6
+Kelantan,Tumpat,Peninsular Malaysia,22,0,3,14,3,2
+Melaka,Alor Gajah,Peninsular Malaysia,17,1,4,8,3,1
+Melaka,Jasin,Peninsular Malaysia,16,0,6,6,2,2
+Melaka,Melaka Tengah,Peninsular Malaysia,27,2,5,16,2,2
+Negeri Sembilan,Bahau,Peninsular Malaysia,7,0,3,2,2,0
+Negeri Sembilan,Jelebu,Peninsular Malaysia,3,0,0,1,1,1
+Negeri Sembilan,Johol,Peninsular Malaysia,4,0,0,1,1,1
+Negeri Sembilan,Kuala Pilah,Peninsular Malaysia,13,0,2,6,2,3
+Negeri Sembilan,Port Dickson,Peninsular Malaysia,16,1,4,4,4,2
+Negeri Sembilan,Rembau,Peninsular Malaysia,5,0,1,2,1,0
+Negeri Sembilan,Seremban,Peninsular Malaysia,29,6,10,8,3,1
+Negeri Sembilan,Tampin,Peninsular Malaysia,3,0,2,0,1,0
+Pahang,Bentong,Peninsular Malaysia,13,0,5,7,1,0
+Pahang,Bera,Peninsular Malaysia,14,0,4,5,2,3
+Pahang,Jerantut,Peninsular Malaysia,24,0,7,7,1,9
+Pahang,Kuantan,Peninsular Malaysia,49,4,13,15,5,11
+Pahang,Lipis,Peninsular Malaysia,13,0,3,8,1,1
+Pahang,Maran,Peninsular Malaysia,8,0,3,4,0,1
+Pahang,Pekan,Peninsular Malaysia,17,0,7,3,1,6
+Pahang,Raub,Peninsular Malaysia,14,0,5,4,1,4
+Pahang,Rompin,Peninsular Malaysia,25,0,10,7,1,7
+Pahang,Temerloh,Peninsular Malaysia,32,0,9,21,2,0
+Perak,Bagan Datuk,Peninsular Malaysia,3,0,2,0,1,0
+Perak,Batang Padang,Peninsular Malaysia,16,0,4,7,3,2
+Perak,Hilir Perak,Peninsular Malaysia,24,1,5,8,2,8
+Perak,Hulu Perak,Peninsular Malaysia,19,0,8,8,3,0
+Perak,Kerian,Peninsular Malaysia,22,1,5,10,4,2
+Perak,Kinta,Peninsular Malaysia,45,3,16,14,5,7
+Perak,Kuala Kangsar,Peninsular Malaysia,20,0,8,8,4,0
+Perak,"Larut, Matang & Selama",Peninsular Malaysia,34,3,7,13,6,5
+Perak,Manjung,Peninsular Malaysia,26,2,6,8,4,6
+Perak,Muallim,Peninsular Malaysia,6,0,2,3,1,0
+Perak,Perak Tengah,Peninsular Malaysia,6,0,3,2,1,0
+Perlis,Arau,Peninsular Malaysia,18,0,4,6,2,6
+Perlis,Kangar,Peninsular Malaysia,18,1,7,3,2,4
+Perlis,Padang Besar,Peninsular Malaysia,16,0,5,5,2,4
+Pulau Pinang,Barat Daya,Peninsular Malaysia,26,3,3,8,8,4
+Pulau Pinang,Seberang Perai Selatan,Peninsular Malaysia,15,0,2,9,3,1
+Pulau Pinang,Seberang Perai Tengah,Peninsular Malaysia,36,5,6,18,6,1
+Pulau Pinang,Seberang Perai Utara,Peninsular Malaysia,42,3,3,24,10,2
+Pulau Pinang,Timur Laut,Peninsular Malaysia,42,2,9,5,15,11
+Sabah,Beaufort,East Malaysia,10,1,3,1,2,3
+Sabah,Kalabakan,East Malaysia,12,0,4,6,1,1
+Sabah,Keningau,East Malaysia,24,1,19,3,1,0
+Sabah,Kimanis,East Malaysia,3,0,0,1,1,1
+Sabah,Kota Belud,East Malaysia,7,0,3,3,1,0
+Sabah,Kota Kinabalu,East Malaysia,18,5,2,5,2,4
+Sabah,Kota Marudu,East Malaysia,8,1,4,0,1,2
+Sabah,Kuala Penyu,East Malaysia,4,0,0,0,1,3
+Sabah,Kudat,East Malaysia,8,0,3,0,1,4
+Sabah,Kunak,East Malaysia,6,0,4,0,1,1
+Sabah,Lahad Datu,East Malaysia,19,2,3,1,1,12
+Sabah,Membakut,East Malaysia,1,0,0,0,0,1
+Sabah,Nabawan,East Malaysia,6,0,3,3,0,0
+Sabah,Papar,East Malaysia,6,1,3,0,1,1
+Sabah,Penampang,East Malaysia,7,2,1,2,1,1
+Sabah,Pitas,East Malaysia,6,0,2,0,1,3
+Sabah,Putatan,East Malaysia,11,3,2,3,1,2
+Sabah,Ranau,East Malaysia,11,1,2,7,1,0
+Sabah,Sandakan,East Malaysia,30,5,14,8,2,1
+Sabah,Semporna,East Malaysia,12,1,7,0,1,3
+Sabah,Sipitang,East Malaysia,5,0,4,0,1,0
+Sabah,Sook,East Malaysia,2,0,0,2,0,0
+Sabah,Tambunan,East Malaysia,8,0,3,4,0,1
+Sabah,Tamparuli,East Malaysia,7,1,1,4,1,0
+Sabah,Tawau,East Malaysia,23,3,5,8,3,4
+Sabah,Tenom,East Malaysia,6,0,1,4,1,0
+Sabah,Tuaran,East Malaysia,10,2,3,4,1,0
+Sarawak,Balingian,East Malaysia,3,0,0,0,0,3
+Sarawak,Batu Niah,East Malaysia,1,0,0,1,0,0
+Sarawak,Bau,East Malaysia,8,1,3,3,1,0
+Sarawak,Bekenu,East Malaysia,7,0,0,4,1,2
+Sarawak,Belaga,East Malaysia,3,0,0,0,0,3
+Sarawak,Betong,East Malaysia,5,0,4,0,1,0
+Sarawak,Bintulu,East Malaysia,15,1,8,0,1,5
+Sarawak,Dalat,East Malaysia,4,0,1,1,1,1
+Sarawak,Engkelili,East Malaysia,3,0,0,0,0,3
+Sarawak,Julau,East Malaysia,2,0,0,0,0,2
+Sarawak,Kanowit,East Malaysia,4,0,1,3,0,0
+Sarawak,Kapit,East Malaysia,20,0,0,4,2,14
+Sarawak,Kota Padawan,East Malaysia,7,0,3,3,1,0
+Sarawak,Kota Samarahan,East Malaysia,6,0,4,2,0,0
+Sarawak,Kuching,East Malaysia,43,3,23,14,3,0
+Sarawak,Lawas,East Malaysia,22,1,3,0,1,17
+Sarawak,Limbang,East Malaysia,18,2,1,0,2,13
+Sarawak,Lubok Antu,East Malaysia,1,0,0,0,0,1
+Sarawak,Lundu,East Malaysia,6,0,0,3,0,3
+Sarawak,Marudi,East Malaysia,3,0,0,0,0,3
+Sarawak,Meradong,East Malaysia,6,0,2,1,1,2
+Sarawak,Miri,East Malaysia,25,3,17,2,3,0
+Sarawak,Mukah,East Malaysia,10,0,7,1,1,1
+Sarawak,Pakan,East Malaysia,2,0,0,2,0,0
+Sarawak,Saratok,East Malaysia,2,0,1,0,1,0
+Sarawak,Sarikei,East Malaysia,11,0,9,0,2,0
+Sarawak,Sebauh,East Malaysia,4,0,0,0,0,4
+Sarawak,Selangau,East Malaysia,8,0,4,4,0,0
+Sarawak,Serian,East Malaysia,8,1,6,0,1,0
+Sarawak,Sibu,East Malaysia,16,1,6,3,6,0
+Sarawak,Sibujaya,East Malaysia,5,0,3,1,1,0
+Sarawak,Simunjan,East Malaysia,3,0,0,0,0,3
+Sarawak,Song,East Malaysia,9,0,0,0,2,7
+Sarawak,Sri Aman,East Malaysia,13,1,7,1,2,2
+Sarawak,Tanjung Manis,East Malaysia,5,0,0,2,0,3
+Sarawak,Tatau,East Malaysia,6,0,3,0,1,2
+Selangor,Gombak,Peninsular Malaysia,9,3,2,2,2,0
+Selangor,Hulu Langat,Peninsular Malaysia,16,2,4,5,4,1
+Selangor,Hulu Selangor,Peninsular Malaysia,9,1,2,1,4,1
+Selangor,Klang,Peninsular Malaysia,10,4,2,1,3,0
+Selangor,Kuala Langat,Peninsular Malaysia,3,0,1,1,1,0
+Selangor,Kuala Selangor,Peninsular Malaysia,16,1,5,8,2,0
+Selangor,Petaling,Peninsular Malaysia,46,9,9,20,5,3
+Selangor,Petaling Jaya,Peninsular Malaysia,21,2,9,7,3,0
+Selangor,Sabak Bernam,Peninsular Malaysia,6,0,2,3,1,0
+Selangor,Sepang,Peninsular Malaysia,12,0,4,6,2,0
+Terengganu,Besut,Peninsular Malaysia,25,1,5,2,3,14
+Terengganu,Dungun,Peninsular Malaysia,15,0,4,6,2,3
+Terengganu,Hulu Terengganu,Peninsular Malaysia,11,0,3,0,2,6
+Terengganu,Kemaman,Peninsular Malaysia,22,0,7,5,1,8
+Terengganu,Kuala Nerus,Peninsular Malaysia,32,2,4,9,3,14
+Terengganu,Kuala Terengganu,Peninsular Malaysia,55,4,10,10,5,25
+Terengganu,Marang,Peninsular Malaysia,14,0,1,4,3,6
+Terengganu,Setiu,Peninsular Malaysia,8,0,1,0,1,6
+W.P. Kuala Lumpur,Bandar Tun Razak,Peninsular Malaysia,27,1,15,6,2,3
+W.P. Kuala Lumpur,Batu,Peninsular Malaysia,19,1,7,5,4,1
+W.P. Kuala Lumpur,Bukit Bintang,Peninsular Malaysia,23,1,15,4,0,3
+W.P. Kuala Lumpur,Cheras,Peninsular Malaysia,25,2,10,4,4,5
+W.P. Kuala Lumpur,Kepong,Peninsular Malaysia,15,1,9,5,0,0
+W.P. Kuala Lumpur,Lembah Pantai,Peninsular Malaysia,19,1,11,4,1,2
+W.P. Kuala Lumpur,Segambut,Peninsular Malaysia,20,1,12,5,1,1
+W.P. Kuala Lumpur,Seputeh,Peninsular Malaysia,16,0,9,5,1,1
+W.P. Kuala Lumpur,Setiawangsa,Peninsular Malaysia,24,2,13,5,1,3
+W.P. Kuala Lumpur,Titiwangsa,Peninsular Malaysia,18,0,10,5,2,1
+W.P. Kuala Lumpur,Wangsa Maju,Peninsular Malaysia,22,0,14,4,1,3
+W.P. Labuan,Kawasan Bandar,East Malaysia,8,1,4,2,1,0
+W.P. Labuan,Kawasan Luar Bandar,East Malaysia,7,0,6,1,0,0
+W.P. Labuan,W.P Labuan,East Malaysia,2,0,1,1,0,0
+W.P. Putrajaya,Cyberjaya,Peninsular Malaysia,9,0,4,3,0,2
+W.P. Putrajaya,Wp Putrajaya,Peninsular Malaysia,24,5,5,7,2,5

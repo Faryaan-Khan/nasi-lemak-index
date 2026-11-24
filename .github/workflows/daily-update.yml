@@ -3,8 +3,12 @@
 # What it does, in order:
 #   1. Restores yesterday's downloaded files from GitHub's cache (so only new data is fetched)
 #   2. Runs src/download.py  -> fetches only files whose fingerprint (ETag) changed
-#   3. Runs the tests and src/checks.py -> stops here if anything looks wrong
-#   4. Commits the small summary tables in data/marts/ if they changed
+#   3. Runs src/checks.py    -> stops here if the raw data looks wrong
+#   4. Runs src/build.py     -> cleans the data and rebuilds the summary tables (sql/*.sql)
+#   5. Runs the tests        -> stops here if the cleaned data or summary tables look wrong
+#   6. Commits the small CSV summary tables in data/marts/ if they changed
+#   7. Uploads the large summary tables (.parquet) to the GitHub release "data-latest",
+#      replacing yesterday's files. Power BI and Streamlit read them from there.
 #
 # Raw data is never committed (it's in .gitignore); it only lives in the cache.
 # You can also start it by hand: GitHub repo -> Actions -> Daily data update -> Run workflow.
@@ -17,7 +21,7 @@ on:
   workflow_dispatch: # adds a manual "Run workflow" button
 
 permissions:
-  contents: write # needed to commit the updated tables
+  contents: write # needed to commit the updated tables and update the release
 
 concurrency:
   group: daily-update
@@ -47,13 +51,16 @@ jobs:
       - name: Download new or changed files
         run: python src/download.py --months 24
 
+      - name: Check the raw data
+        run: python src/checks.py
+
+      - name: Clean the data and rebuild the summary tables
+        run: python src/build.py
+
       - name: Run tests
         run: python -m pytest -q
 
-      - name: Run data-quality checks
-        run: python src/checks.py
-
-      - name: Commit updated tables (only if something changed)
+      - name: Commit updated CSV tables (only if something changed)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -62,5 +69,17 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Daily data update: $(date -u +%Y-%m-%d)"
+            git pull --rebase
             git push
           fi
+
+      - name: Publish large tables to the data-latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view data-latest > /dev/null 2>&1; then
+            gh release create data-latest --title "Latest data (updated daily)" \
+              --notes "Summary tables rebuilt every night by the Daily data update workflow. Files are replaced each run; see docs/notes.md for what each table contains. Source: PriceCatcher (KPDN, DOSM), CC BY 4.0."
+          fi
+          gh release upload data-latest data/marts/*.parquet --clobber
+          gh release edit data-latest --notes "Summary tables rebuilt every night by the Daily data update workflow (last run: $(date -u '+%Y-%m-%d %H:%M UTC')). Source: PriceCatcher (KPDN, DOSM), CC BY 4.0."

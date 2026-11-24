@@ -24,3 +24,7 @@ dashboard/~$*
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Large marts are published as GitHub release files (tag: data-latest), not committed,
+# so the git history doesn't grow by megabytes every day. Small CSV marts ARE committed.
+data/marts/*.parquet
