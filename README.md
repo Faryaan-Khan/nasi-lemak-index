@@ -20,8 +20,8 @@ festive seasons, and which store types charge more for the same item.
 > **Status (Nov 2026):** the data pipeline is live and refreshes itself every night, and the
 > 130M rows since 2022 are profiled, cleaned (Phase 2), aggregated into dashboard-ready tables
 > (Phase 3), and turned into basket costs and festive price windows using official holiday dates
-> (Phase 4). The analysis write-up (Phase 5) is next. Dashboard screenshots, headline insights and a live link
-> will appear here as each phase lands. See the [roadmap](#roadmap).
+> (Phase 4), and analysed (Phase 5, below). The forecast (Phase 6) is next; dashboard screenshots and
+> a live link will follow. See the [roadmap](#roadmap).
 
 ---
 
@@ -34,12 +34,29 @@ festive seasons, and which store types charge more for the same item.
 | 3 | **Which store types charge a premium?** Hypermarket vs supermarket vs minimart vs wet market, same item, same district. | Channel pricing, competitive positioning |
 | 4 | **What happens next?** A 4–8 week price forecast for key items (chicken, eggs, rice, onions, chilli). | Procurement and budgeting |
 
-## What the data looks like so far
+## Key findings
+
+Snapshot from the nightly tables (last quarter to 22 Nov 2026; festivals 2022 to 2026). Full
+write-up with methods and caveats: [`docs/insights.md`](docs/insights.md).
+
+1. **Where you shop matters more than which state you're in.** The same Nasi Lemak basket costs
+   RM 20.81 in Kuala Muda (Kedah) and RM 25.55 in Segambut (KL), **23% more**. For a family basket
+   the gap is RM 29 a week, about RM 1,500 a year.
+2. **Festive spikes are real but narrow.** Most items don't move at all before festivals. The ones
+   that do are festive cooking produce: **limes +32% and red grapes +44% before Raya** (every year
+   since 2022), **tomatoes +61% before CNY** (4 of 4 years). Each was checked against a placebo
+   window 13 weeks later to rule out plain seasonality.
+3. **Wet markets aren't the cheap option.** Like-for-like (same item, same district, same month),
+   wet markets charge about **11% more** than supermarkets, and 34% more for dry goods like onions
+   and garlic. Hypermarkets cost about the same as supermarkets.
+4. **East Malaysia pays more for most things, but less for fish.** 63% of comparable items cost more
+   in Sabah, Sarawak and Labuan (chillies about double), but **seafood is about 20% cheaper**.
+   Price-controlled sugar and cooking oil cost exactly the same everywhere.
+
+## What the data looks like
 
 These come from the pipeline's own coverage table,
 [`data/marts/coverage_monthly.csv`](data/marts/coverage_monthly.csv), which updates daily.
-Price findings will be added once cleaning is done, because numbers from uncleaned data would be
-misleading.
 
 - **130,548,639 price records** from January 2022 to November 2026, about 170 MB of compressed
   parquet, queried on a laptop with DuckDB.
@@ -86,7 +103,7 @@ Malaysia time** on GitHub's servers:
    A full re-check of all 59 months takes a few seconds.
 3. Checks the raw data (expected columns, no missing or zero prices, data less than 14 days old).
 4. Cleans all 130M rows and rebuilds the summary tables with DuckDB SQL.
-5. Runs 38 tests on the cleaned data and summary tables. **If anything fails, nothing is published.**
+5. Runs 45 tests on the cleaned data and summary tables. **If anything fails, nothing is published.**
 6. Commits the small CSV tables and replaces the large ones on the
    [`data-latest` release](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/tag/data-latest).
 
@@ -106,6 +123,7 @@ Every figure is a **median** backed by **at least 3 shops**, with the price and 
 | `basket_cost_state_week` | basket × state × week | ~3.3k | [CSV](data/marts/basket_cost_state_week.csv) |
 | `basket_cost_district_week` | basket × district × week | ~10.6k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/basket_cost_district_week.parquet) |
 | `festive_window` | festival × item × week (−12 to +2), price index vs own baseline | ~76k | [CSV](data/marts/festive_window.csv) |
+| `insight_*` | the Phase 5 answers: basket rankings, festive rises with placebo, store-type premiums, East vs West | small | [folder](data/marts/) |
 
 Baskets (Nasi Lemak, Student weekly, Family weekly) are defined in
 [`data/reference/baskets.csv`](data/reference/baskets.csv) with real item codes; quantities are
@@ -158,7 +176,7 @@ On macOS or Linux, use `.venv/bin/python` and forward slashes instead.
 | 2 | Profile the data and clean it in SQL (placeholders, outliers, name standardisation) | ✅ Done |
 | 3 | Marts: weekly item × district/state/national medians, store-type × district monthly medians | ✅ Done |
 | 4 | Basket definitions (Nasi Lemak, Student, Family) and an official festive calendar | ✅ Done |
-| 5 | Analysis: cheapest regions, festive spikes, store-type premium, East vs West Malaysia | ⏳ Planned |
+| 5 | Analysis: cheapest regions, festive spikes, store-type premium, East vs West Malaysia | ✅ Done |
 | 6 | Forecast for 3–5 key items, ETS vs seasonal-naive baseline, holdout MAPE reported honestly | ⏳ Planned |
 | 7 | Power BI dashboard: Overview, Basket Builder, Festive Spikes, Store-Type Premium, Forecast | ⏳ Planned |
 | 8 | Streamlit web version with a free public link | ⏳ Planned |

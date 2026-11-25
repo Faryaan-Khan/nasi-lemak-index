@@ -1,0 +1,39 @@
+basket,state,region,basket_cost,rank_cheapest,rm_above_cheapest,first_week,last_week
+Family weekly,Kedah,Peninsular Malaysia,143.32,1,0.00,2026-08-24,2026-11-16
+Family weekly,Perak,Peninsular Malaysia,143.46,2,0.14,2026-08-24,2026-11-16
+Family weekly,Pulau Pinang,Peninsular Malaysia,145.81,3,2.49,2026-08-24,2026-11-16
+Family weekly,Melaka,Peninsular Malaysia,148.01,4,4.69,2026-08-24,2026-11-16
+Family weekly,Johor,Peninsular Malaysia,148.31,5,4.99,2026-08-24,2026-11-16
+Family weekly,Kelantan,Peninsular Malaysia,148.59,6,5.27,2026-08-24,2026-11-16
+Family weekly,Negeri Sembilan,Peninsular Malaysia,149.54,7,6.22,2026-08-24,2026-11-16
+Family weekly,Pahang,Peninsular Malaysia,150.05,8,6.73,2026-08-24,2026-11-16
+Family weekly,Terengganu,Peninsular Malaysia,150.15,9,6.83,2026-08-24,2026-11-16
+Family weekly,Selangor,Peninsular Malaysia,152.20,10,8.88,2026-08-24,2026-11-16
+Family weekly,W.P. Kuala Lumpur,Peninsular Malaysia,156.22,11,12.90,2026-08-24,2026-11-16
+Family weekly,W.P. Putrajaya,Peninsular Malaysia,159.47,12,16.15,2026-08-24,2026-11-16
+Nasi Lemak,Kedah,Peninsular Malaysia,21.46,1,0.00,2026-08-24,2026-11-16
+Nasi Lemak,Johor,Peninsular Malaysia,21.76,2,0.30,2026-08-24,2026-11-16
+Nasi Lemak,Melaka,Peninsular Malaysia,21.85,3,0.39,2026-08-24,2026-11-16
+Nasi Lemak,Pulau Pinang,Peninsular Malaysia,21.87,4,0.41,2026-08-24,2026-11-16
+Nasi Lemak,Perlis,Peninsular Malaysia,21.99,5,0.53,2026-08-24,2026-11-16
+Nasi Lemak,Selangor,Peninsular Malaysia,22.08,6,0.62,2026-08-24,2026-11-16
+Nasi Lemak,Perak,Peninsular Malaysia,22.17,7,0.71,2026-08-24,2026-11-16
+Nasi Lemak,Terengganu,Peninsular Malaysia,22.18,8,0.72,2026-08-24,2026-11-16
+Nasi Lemak,Negeri Sembilan,Peninsular Malaysia,22.21,9,0.75,2026-08-24,2026-11-16
+Nasi Lemak,Pahang,Peninsular Malaysia,22.22,10,0.76,2026-08-24,2026-11-16
+Nasi Lemak,Kelantan,Peninsular Malaysia,22.49,11,1.03,2026-08-24,2026-11-16
+Nasi Lemak,W.P. Kuala Lumpur,Peninsular Malaysia,23.22,12,1.76,2026-08-24,2026-11-16
+Nasi Lemak,W.P. Putrajaya,Peninsular Malaysia,23.71,13,2.25,2026-08-24,2026-11-16
+Student weekly,Perak,Peninsular Malaysia,56.76,1,0.00,2026-08-24,2026-11-16
+Student weekly,Kedah,Peninsular Malaysia,57.22,2,0.46,2026-08-24,2026-11-16
+Student weekly,Pulau Pinang,Peninsular Malaysia,57.60,3,0.84,2026-08-24,2026-11-16
+Student weekly,Melaka,Peninsular Malaysia,57.61,4,0.85,2026-08-24,2026-11-16
+Student weekly,Johor,Peninsular Malaysia,57.70,5,0.94,2026-08-24,2026-11-16
+Student weekly,Negeri Sembilan,Peninsular Malaysia,58.36,6,1.60,2026-08-24,2026-11-16
+Student weekly,Selangor,Peninsular Malaysia,58.55,7,1.79,2026-08-24,2026-11-16
+Student weekly,Pahang,Peninsular Malaysia,58.89,8,2.13,2026-08-24,2026-11-16
+Student weekly,Perlis,Peninsular Malaysia,58.93,9,2.17,2026-08-24,2026-11-16
+Student weekly,Kelantan,Peninsular Malaysia,59.32,10,2.56,2026-08-24,2026-11-16
+Student weekly,Terengganu,Peninsular Malaysia,59.70,11,2.94,2026-08-24,2026-11-16
+Student weekly,W.P. Putrajaya,Peninsular Malaysia,59.75,12,2.99,2026-08-24,2026-11-16
+Student weekly,W.P. Kuala Lumpur,Peninsular Malaysia,59.76,13,3.00,2026-08-24,2026-11-16

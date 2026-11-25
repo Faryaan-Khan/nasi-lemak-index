@@ -230,3 +230,46 @@ was published). The 2022 files store `date` as a midnight timestamp instead of a
 which broke the freshness check; the clean table now casts every date to `DATE`, with a test.
 Basket costs now add up in exact `DECIMAL` arithmetic, because adding floating-point numbers in a
 different order (DuckDB works in parallel) changed the last cent between runs.
+
+## Phase 5: Analysis
+
+**What I did**
+- `sql/04_insights.sql` answers the four questions and writes five small result tables
+  (`data/marts/insight_*.csv`). It runs every night with the rest of the pipeline, so the numbers
+  can always be re-checked against fresh data.
+- `docs/insights.md` writes up 7 headline findings in plain English, each with a chart idea.
+- `tests/test_insights.py`: 6 tests (rankings start at RM 0 gap, net rise = rise - placebo, every
+  festive row meets the evidence bar, store-type comparisons have 200+ pairs, East-West items are
+  sold in enough states). 45 tests in total.
+
+**Method choices and why**
+| Choice | Why |
+|---|---|
+| "Last quarter" = 13 complete weeks, item medians first, then add up the basket | One week can be patchy; a quarter is steadier and lets a place count if each item is priced in 4+ weeks |
+| Rank Peninsular states only for baskets | The basket's rice brand isn't sold in East Malaysia, so East Malaysia is compared item by item instead. Comparing different baskets would be unfair |
+| Festive rise = average of weeks -2 to 0 vs median of weeks -12 to -9 | Using the single highest week would flatter noisy items: the maximum of 9 random weeks is above 100 even with no festival |
+| **Placebo check**: same calculation 13 weeks after each festival | If an item rises just as much when nothing is celebrated, the "festive" rise is really seasonal or noise. This removed red grapes before CNY and shallots before Deepavali |
+| Only items seen in 3+ festival years with 100+ shops every week | Small samples and thin coverage create fake spikes |
+| Store-type premium vs supermarkets, same item + district + month | Like-for-like: otherwise a "premium" could just mean wet markets are in pricier districts |
+| Typical premium = exp(median of log ratios) | Treats +10% and -10% symmetrically and isn't pulled by extreme pairs |
+| East vs West: median of state medians, items sold in 2+ East and 8+ Peninsular states | Stops one state dominating and keeps the item list identical on both sides |
+
+**Headline results** (details in `docs/insights.md`)
+1. Same Nasi Lemak basket: RM 20.81 in Kuala Muda (Kedah) vs RM 25.55 in Segambut (KL), 23% more.
+2. Kedah is the cheapest state; Putrajaya and KL the dearest. District gaps are about 2x state gaps.
+3. Most items don't move before festivals (median change 0%); spikes are in a few fresh items.
+4. Pre-Raya: red grapes +44%, limes +32% (5 of 5 years). Pre-CNY: tomatoes +61% (4 of 4 years).
+5. Wet markets are about 11% dearer than supermarkets like-for-like; hypermarkets cost about the same.
+6. East Malaysia is dearer for 63% of items (chillies about 2x) but seafood is about 20% cheaper.
+7. The Nasi Lemak basket costs about 11% more in 2026 than in 2022 (not an inflation measure).
+
+**Honest limitations**
+- CNY falls in the monsoon season; the placebo check reduces, but can't fully remove, weather effects.
+- Only 4 to 5 festivals per type since 2022.
+- Same item code doesn't guarantee the same freshness or quality across store types.
+- Basket quantities are illustrative assumptions.
+
+**Interview one-liner**
+"I didn't stop at 'tomatoes rise 61% before CNY'. I tested it against a placebo window 13 weeks
+later, which knocked out items that were just seasonal, and I compared store types strictly
+like-for-like, which showed wet markets are about 11% dearer than supermarkets, not cheaper."

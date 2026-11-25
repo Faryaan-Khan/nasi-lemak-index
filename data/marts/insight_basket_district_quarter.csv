@@ -1,0 +1,136 @@
+basket,state,district,region,basket_cost,rank_cheapest,rm_above_cheapest
+Family weekly,Kedah,Kuala Muda,Peninsular Malaysia,138.14,1,0.00
+Family weekly,Perak,Kinta,Peninsular Malaysia,140.59,2,2.45
+Family weekly,Pulau Pinang,Seberang Perai Tengah,Peninsular Malaysia,141.31,3,3.17
+Family weekly,Perak,Kerian,Peninsular Malaysia,141.35,4,3.21
+Family weekly,Kedah,Kulim,Peninsular Malaysia,143.41,5,5.27
+Family weekly,Pulau Pinang,Seberang Perai Utara,Peninsular Malaysia,143.41,6,5.27
+Family weekly,Johor,Segamat,Peninsular Malaysia,145.07,7,6.93
+Family weekly,Johor,Kluang,Peninsular Malaysia,147.65,8,9.51
+Family weekly,Negeri Sembilan,Seremban,Peninsular Malaysia,147.84,9,9.70
+Family weekly,Johor,Johor Bahru,Peninsular Malaysia,148.86,10,10.72
+Family weekly,Terengganu,Kuala Terengganu,Peninsular Malaysia,149.87,11,11.73
+Family weekly,Pulau Pinang,Barat Daya,Peninsular Malaysia,149.94,12,11.80
+Family weekly,Terengganu,Kuala Nerus,Peninsular Malaysia,150.15,13,12.01
+Family weekly,Pulau Pinang,Timur Laut,Peninsular Malaysia,150.70,14,12.56
+Family weekly,W.P. Kuala Lumpur,Bandar Tun Razak,Peninsular Malaysia,151.23,15,13.09
+Family weekly,W.P. Kuala Lumpur,Bukit Bintang,Peninsular Malaysia,152.30,16,14.16
+Family weekly,Johor,Batu Pahat,Peninsular Malaysia,153.39,17,15.25
+Family weekly,Pahang,Temerloh,Peninsular Malaysia,153.66,18,15.52
+Family weekly,Selangor,Petaling,Peninsular Malaysia,153.90,19,15.76
+Family weekly,W.P. Kuala Lumpur,Wangsa Maju,Peninsular Malaysia,154.53,20,16.39
+Family weekly,W.P. Kuala Lumpur,Setiawangsa,Peninsular Malaysia,155.62,21,17.48
+Family weekly,W.P. Kuala Lumpur,Cheras,Peninsular Malaysia,156.62,22,18.48
+Family weekly,W.P. Putrajaya,Wp Putrajaya,Peninsular Malaysia,159.33,23,21.19
+Family weekly,W.P. Kuala Lumpur,Lembah Pantai,Peninsular Malaysia,162.53,24,24.39
+Family weekly,W.P. Kuala Lumpur,Segambut,Peninsular Malaysia,167.14,25,29.00
+Nasi Lemak,Kedah,Kuala Muda,Peninsular Malaysia,20.81,1,0.00
+Nasi Lemak,Johor,Segamat,Peninsular Malaysia,20.94,2,0.13
+Nasi Lemak,Kedah,Kulim,Peninsular Malaysia,21.11,3,0.30
+Nasi Lemak,Kedah,Kota Setar,Peninsular Malaysia,21.23,4,0.42
+Nasi Lemak,Pulau Pinang,Seberang Perai Utara,Peninsular Malaysia,21.23,5,0.42
+Nasi Lemak,Kedah,Yan,Peninsular Malaysia,21.31,6,0.50
+Nasi Lemak,Johor,Tangkak,Peninsular Malaysia,21.35,7,0.54
+Nasi Lemak,Perlis,Kangar,Peninsular Malaysia,21.41,8,0.60
+Nasi Lemak,Johor,Muar,Peninsular Malaysia,21.43,9,0.62
+Nasi Lemak,Johor,Kluang,Peninsular Malaysia,21.50,10,0.69
+Nasi Lemak,Selangor,Klang,Peninsular Malaysia,21.50,11,0.69
+Nasi Lemak,Johor,Johor Bahru,Peninsular Malaysia,21.51,12,0.70
+Nasi Lemak,Kedah,Kubang Pasu,Peninsular Malaysia,21.58,13,0.77
+Nasi Lemak,Melaka,Melaka Tengah,Peninsular Malaysia,21.59,14,0.78
+Nasi Lemak,Perak,Hulu Perak,Peninsular Malaysia,21.60,15,0.79
+Nasi Lemak,Selangor,Gombak,Peninsular Malaysia,21.70,16,0.89
+Nasi Lemak,Pulau Pinang,Seberang Perai Tengah,Peninsular Malaysia,21.73,17,0.92
+Nasi Lemak,Terengganu,Kemaman,Peninsular Malaysia,21.75,18,0.94
+Nasi Lemak,Perak,Kerian,Peninsular Malaysia,21.78,19,0.97
+Nasi Lemak,Perak,Manjung,Peninsular Malaysia,21.80,20,0.99
+Nasi Lemak,Perak,Kuala Kangsar,Peninsular Malaysia,21.85,21,1.04
+Nasi Lemak,Perak,Kinta,Peninsular Malaysia,21.89,22,1.08
+Nasi Lemak,Negeri Sembilan,Seremban,Peninsular Malaysia,21.99,23,1.18
+Nasi Lemak,Perlis,Arau,Peninsular Malaysia,21.99,24,1.18
+Nasi Lemak,Pulau Pinang,Barat Daya,Peninsular Malaysia,22.15,25,1.34
+Nasi Lemak,Selangor,Hulu Langat,Peninsular Malaysia,22.17,26,1.36
+Nasi Lemak,W.P. Kuala Lumpur,Bandar Tun Razak,Peninsular Malaysia,22.17,27,1.36
+Nasi Lemak,Pulau Pinang,Seberang Perai Selatan,Peninsular Malaysia,22.28,28,1.47
+Nasi Lemak,Terengganu,Kuala Terengganu,Peninsular Malaysia,22.29,29,1.48
+Nasi Lemak,Pahang,Temerloh,Peninsular Malaysia,22.30,30,1.49
+Nasi Lemak,Perak,"Larut, Matang & Selama",Peninsular Malaysia,22.31,31,1.50
+Nasi Lemak,Selangor,Kuala Selangor,Peninsular Malaysia,22.35,32,1.54
+Nasi Lemak,Pahang,Pekan,Peninsular Malaysia,22.40,33,1.59
+Nasi Lemak,Pahang,Bentong,Peninsular Malaysia,22.44,34,1.63
+Nasi Lemak,Terengganu,Dungun,Peninsular Malaysia,22.44,35,1.63
+Nasi Lemak,Melaka,Alor Gajah,Peninsular Malaysia,22.49,36,1.68
+Nasi Lemak,Selangor,Petaling,Peninsular Malaysia,22.52,37,1.71
+Nasi Lemak,Pahang,Kuantan,Peninsular Malaysia,22.53,38,1.72
+Nasi Lemak,Selangor,Petaling Jaya,Peninsular Malaysia,22.55,39,1.74
+Nasi Lemak,Perak,Hilir Perak,Peninsular Malaysia,22.56,40,1.75
+Nasi Lemak,Kelantan,Kota Bharu,Peninsular Malaysia,22.57,41,1.76
+Nasi Lemak,Selangor,Sabak Bernam,Peninsular Malaysia,22.57,42,1.76
+Nasi Lemak,W.P. Kuala Lumpur,Setiawangsa,Peninsular Malaysia,22.74,43,1.93
+Nasi Lemak,Johor,Batu Pahat,Peninsular Malaysia,22.76,44,1.95
+Nasi Lemak,Terengganu,Kuala Nerus,Peninsular Malaysia,22.77,45,1.96
+Nasi Lemak,Pulau Pinang,Timur Laut,Peninsular Malaysia,22.80,46,1.99
+Nasi Lemak,Kelantan,Tumpat,Peninsular Malaysia,22.88,47,2.07
+Nasi Lemak,W.P. Kuala Lumpur,Bukit Bintang,Peninsular Malaysia,23.03,48,2.22
+Nasi Lemak,W.P. Kuala Lumpur,Wangsa Maju,Peninsular Malaysia,23.13,49,2.32
+Nasi Lemak,W.P. Kuala Lumpur,Kepong,Peninsular Malaysia,23.41,50,2.60
+Nasi Lemak,W.P. Putrajaya,Wp Putrajaya,Peninsular Malaysia,23.49,51,2.68
+Nasi Lemak,W.P. Kuala Lumpur,Cheras,Peninsular Malaysia,23.82,52,3.01
+Nasi Lemak,Kedah,Langkawi,Peninsular Malaysia,23.91,53,3.10
+Nasi Lemak,W.P. Kuala Lumpur,Batu,Peninsular Malaysia,24.55,54,3.74
+Nasi Lemak,W.P. Kuala Lumpur,Lembah Pantai,Peninsular Malaysia,25.17,55,4.36
+Nasi Lemak,W.P. Kuala Lumpur,Segambut,Peninsular Malaysia,25.55,56,4.74
+Student weekly,Kedah,Kuala Muda,Peninsular Malaysia,55.39,1,0.00
+Student weekly,Perak,Hulu Perak,Peninsular Malaysia,55.61,2,0.22
+Student weekly,Pulau Pinang,Seberang Perai Tengah,Peninsular Malaysia,55.88,3,0.49
+Student weekly,Johor,Tangkak,Peninsular Malaysia,55.89,4,0.50
+Student weekly,Johor,Muar,Peninsular Malaysia,55.95,5,0.56
+Student weekly,Perak,Kerian,Peninsular Malaysia,55.95,6,0.56
+Student weekly,Johor,Segamat,Peninsular Malaysia,56.19,7,0.80
+Student weekly,Perak,Kuala Kangsar,Peninsular Malaysia,56.32,8,0.93
+Student weekly,Pulau Pinang,Seberang Perai Utara,Peninsular Malaysia,56.35,9,0.96
+Student weekly,Perak,Kinta,Peninsular Malaysia,56.80,10,1.41
+Student weekly,Melaka,Melaka Tengah,Peninsular Malaysia,56.85,11,1.46
+Student weekly,Perak,Manjung,Peninsular Malaysia,57.19,12,1.80
+Student weekly,Pulau Pinang,Seberang Perai Selatan,Peninsular Malaysia,57.27,13,1.88
+Student weekly,Kedah,Kulim,Peninsular Malaysia,57.30,14,1.91
+Student weekly,Kedah,Kota Setar,Peninsular Malaysia,57.38,15,1.99
+Student weekly,Johor,Johor Bahru,Peninsular Malaysia,57.58,16,2.19
+Student weekly,W.P. Kuala Lumpur,Kepong,Peninsular Malaysia,57.68,17,2.29
+Student weekly,Perak,"Larut, Matang & Selama",Peninsular Malaysia,57.79,18,2.40
+Student weekly,Negeri Sembilan,Seremban,Peninsular Malaysia,57.81,19,2.42
+Student weekly,Kedah,Kubang Pasu,Peninsular Malaysia,57.85,20,2.46
+Student weekly,Johor,Kluang,Peninsular Malaysia,57.95,21,2.56
+Student weekly,Selangor,Petaling Jaya,Peninsular Malaysia,57.96,22,2.57
+Student weekly,Selangor,Kuala Selangor,Peninsular Malaysia,58.07,23,2.68
+Student weekly,Perak,Hilir Perak,Peninsular Malaysia,58.08,24,2.69
+Student weekly,Selangor,Hulu Langat,Peninsular Malaysia,58.25,25,2.86
+Student weekly,Selangor,Petaling,Peninsular Malaysia,58.35,26,2.96
+Student weekly,W.P. Kuala Lumpur,Bandar Tun Razak,Peninsular Malaysia,58.53,27,3.14
+Student weekly,Pahang,Kuantan,Peninsular Malaysia,58.69,28,3.30
+Student weekly,Perlis,Kangar,Peninsular Malaysia,58.76,29,3.37
+Student weekly,W.P. Kuala Lumpur,Setiawangsa,Peninsular Malaysia,58.78,30,3.39
+Student weekly,Selangor,Klang,Peninsular Malaysia,58.82,31,3.43
+Student weekly,Melaka,Alor Gajah,Peninsular Malaysia,58.86,32,3.47
+Student weekly,Selangor,Gombak,Peninsular Malaysia,58.92,33,3.53
+Student weekly,Selangor,Sabak Bernam,Peninsular Malaysia,59.01,34,3.62
+Student weekly,Terengganu,Kuala Terengganu,Peninsular Malaysia,59.15,35,3.76
+Student weekly,Kelantan,Kota Bharu,Peninsular Malaysia,59.22,36,3.83
+Student weekly,Pulau Pinang,Timur Laut,Peninsular Malaysia,59.31,37,3.92
+Student weekly,W.P. Putrajaya,Wp Putrajaya,Peninsular Malaysia,59.42,38,4.03
+Student weekly,Johor,Batu Pahat,Peninsular Malaysia,59.46,39,4.07
+Student weekly,Kelantan,Tumpat,Peninsular Malaysia,59.48,40,4.09
+Student weekly,W.P. Kuala Lumpur,Wangsa Maju,Peninsular Malaysia,59.49,41,4.10
+Student weekly,Pahang,Temerloh,Peninsular Malaysia,59.67,42,4.28
+Student weekly,Terengganu,Kemaman,Peninsular Malaysia,59.71,43,4.32
+Student weekly,Pulau Pinang,Barat Daya,Peninsular Malaysia,59.75,44,4.36
+Student weekly,Johor,Kota Tinggi,Peninsular Malaysia,59.83,45,4.44
+Student weekly,Pahang,Pekan,Peninsular Malaysia,60.13,46,4.74
+Student weekly,Terengganu,Dungun,Peninsular Malaysia,60.40,47,5.01
+Student weekly,W.P. Kuala Lumpur,Cheras,Peninsular Malaysia,60.45,48,5.06
+Student weekly,Terengganu,Kuala Nerus,Peninsular Malaysia,60.60,49,5.21
+Student weekly,W.P. Kuala Lumpur,Bukit Bintang,Peninsular Malaysia,61.18,50,5.79
+Student weekly,W.P. Kuala Lumpur,Segambut,Peninsular Malaysia,61.81,51,6.42
+Student weekly,W.P. Kuala Lumpur,Batu,Peninsular Malaysia,61.89,52,6.50
+Student weekly,Kedah,Langkawi,Peninsular Malaysia,62.98,53,7.59
+Student weekly,W.P. Kuala Lumpur,Lembah Pantai,Peninsular Malaysia,63.00,54,7.61
