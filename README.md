@@ -228,6 +228,6 @@ Code: [MIT licence](LICENSE).
 
 ## About
 
-Built by **Faryaan Khan**, final-year Computer Science (data science) student, as a portfolio project
-for data analyst and BI roles. Built with AI-assisted development; every design choice is
+Built by **Faryaan Khan**, final-year Computer Science student, as a portfolio project.
+Built with AI-assisted development; every design choice is
 explained in [`docs/notes.md`](docs/notes.md).
