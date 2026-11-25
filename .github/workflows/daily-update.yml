@@ -5,9 +5,10 @@
 #   2. Runs src/download.py  -> fetches only files whose fingerprint (ETag) changed
 #   3. Runs src/checks.py    -> stops here if the raw data looks wrong
 #   4. Runs src/build.py     -> cleans the data and rebuilds the summary tables (sql/*.sql)
-#   5. Runs the tests        -> stops here if the cleaned data or summary tables look wrong
-#   6. Commits the small CSV summary tables in data/marts/ if they changed
-#   7. Uploads the large summary tables (.parquet) to the GitHub release "data-latest",
+#   5. Runs src/forecast.py  -> 8-week price forecasts, only when the weekly prices changed
+#   6. Runs the tests        -> stops here if the cleaned data, tables or forecasts look wrong
+#   7. Commits the small CSV summary tables in data/marts/ if they changed
+#   8. Uploads the large summary tables (.parquet) to the GitHub release "data-latest",
 #      replacing yesterday's files. Power BI and Streamlit read them from there.
 #
 # Raw data is never committed (it's in .gitignore); it only lives in the cache.
@@ -39,7 +40,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install the few libraries this job needs
-        run: pip install duckdb requests pytest
+        run: pip install duckdb requests pytest pandas statsmodels
 
       - name: Restore previously downloaded raw files
         uses: actions/cache@v4
@@ -56,6 +57,16 @@ jobs:
 
       - name: Clean the data and rebuild the summary tables
         run: python src/build.py
+
+      - name: Forecast (only when the weekly prices changed)
+        # The forecast fits statistical models, so re-running it on unchanged data could produce
+        # tiny differences between computers. Only re-run it when there's new data.
+        run: |
+          if git diff --quiet -- data/marts/item_national_week.csv; then
+            echo "Weekly prices unchanged, keeping the existing forecast."
+          else
+            python src/forecast.py
+          fi
 
       - name: Run tests
         run: python -m pytest -q

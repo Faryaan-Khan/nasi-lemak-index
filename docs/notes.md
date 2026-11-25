@@ -273,3 +273,46 @@ different order (DuckDB works in parallel) changed the last cent between runs.
 "I didn't stop at 'tomatoes rise 61% before CNY'. I tested it against a placebo window 13 weeks
 later, which knocked out items that were just seasonal, and I compared store types strictly
 like-for-like, which showed wet markets are about 11% dearer than supermarkets, not cheaper."
+
+## Phase 6: Forecast
+
+**What I did**
+- `src/forecast.py` forecasts the national weekly median price 8 weeks ahead for 5 items: chicken
+  (standard, 1 kg), grade B eggs (30), rice (Cap Rambutan 5%, 10 kg), Indian big onion (1 kg) and
+  red chilli (1 kg). It writes `data/marts/forecast_accuracy.csv` and `forecast_item_week.csv`.
+- Four models: **naive** (next weeks = this week), **seasonal naive** (= same week last year, the
+  baseline CLAUDE.md asked for), **ETS** with a damped trend, and **Holt-Winters** (damped trend +
+  yearly seasonality), all from statsmodels.
+- **Backtest:** pretend it's each week of the last year (52 starting points), forecast 8 weeks,
+  compare with what really happened. Score = MAPE (on average, how many % off).
+- **80% band:** from each model's own backtest errors at that horizon ("8 times out of 10, the real
+  price was inside this range"). It needs no statistical assumptions and it corrects for any
+  model that tends to be too high or too low.
+- The daily GitHub job re-runs the forecast whenever the weekly prices change. `tests/test_forecast.py`
+  adds 5 tests (50 in total).
+
+**Results (backtest over the last 52 weeks, average of 1 to 8 weeks ahead)**
+| Item | Naive | Seasonal naive | ETS | Holt-Winters | Best |
+|---|---|---|---|---|---|
+| Chicken | **4.45%** | 7.90% | 4.45% | 6.35% | naive (ETS ties) |
+| Eggs, grade B | 8.81% | **6.55%** | 9.40% | 8.47% | seasonal naive |
+| Rice 10 kg | **0.63%** | 5.24% | 0.77% | 1.67% | naive |
+| Big onion | **4.91%** | 34.31% | 5.09% | 7.71% | naive |
+| Red chilli | 14.92% | **10.10%** | 15.26% | 12.50% | seasonal naive |
+
+**Being honest about it**
+- **ETS did not beat the baselines for any item.** For chicken it ties with naive; for the rest it
+  is slightly worse. Week-to-week prices are sticky, so "next week = this week" is very hard to beat.
+- **Eggs and chilli have a real yearly pattern.** Eggs dip every April to May (RM 10.50 in 2025,
+  RM 10.04 in 2026) and chilli peaks every December to January, so "same week last year" wins over
+  8 weeks. But 1 to 2 weeks ahead, naive is better for every item (e.g. eggs: 2.5% vs 6.5% error
+  1 week ahead).
+- **Big onion has no yearly pattern:** last year's price is 34% off on average.
+- Rice is barely forecastable because it barely moves (under 1% error).
+- So the practical recommendation is: use naive for the next 1 to 2 weeks, and seasonal naive for
+  eggs and chilli further out. The dashboard shows all models with the winner marked.
+
+**Interview one-liner**
+"I backtested ETS and Holt-Winters against naive and seasonal-naive baselines over 52 forecast
+origins, and reported honestly that the fancy models didn't win: prices are sticky, and the only
+real signal was a yearly pattern in eggs and chillies."

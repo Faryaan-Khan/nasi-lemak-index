@@ -170,6 +170,30 @@ ingredient, isn't included because the government stopped pricing it in July 202
 *Chart idea:* a weekly line chart of each basket since 2022, with festival dates marked as vertical
 lines.
 
+## 8. Next month's prices: "same as this week" beats the fancy models
+
+For chicken, eggs, rice, onions and red chilli, four forecasting methods were tested by pretending
+it was each week of the last year, forecasting 8 weeks ahead, and checking against what actually
+happened. Average error (1 to 8 weeks ahead):
+
+| Item | Best method | Its average error | ETS (statistical model) |
+|---|---|---|---|
+| Rice (10 kg) | Same as this week | 0.6% | 0.8% |
+| Chicken | Same as this week | 4.5% | 4.5% (tie) |
+| Big onion | Same as this week | 4.9% | 5.1% |
+| Eggs, grade B | Same week last year | 6.6% | 9.4% |
+| Red chilli | Same week last year | 10.1% | 15.3% |
+
+- Grocery prices are **sticky**: for most items, next week's price is best predicted by this
+  week's. The statistical model (ETS) never did better.
+- **Eggs and red chilli follow the calendar:** eggs get cheaper every April to May and chilli peaks
+  every December to January, so last year's pattern is the best guide beyond the next fortnight.
+- Forecasts and 80% ranges for the next 8 weeks are in `data/marts/forecast_item_week.csv` and are
+  refreshed whenever new prices arrive.
+
+*Chart idea:* for each item, the last 52 weeks of prices as a line, the next 8 weeks as a dashed
+line with a shaded 80% band, and a small table of each method's error.
+
 ---
 
 ## How these were calculated (short version)
@@ -180,6 +204,7 @@ lines.
 | Festive spikes | Average of the 3 weeks before the festival vs the median of weeks −12 to −9; same calculation 13 weeks later as a placebo; items in 3+ years with 100+ shops | §2 |
 | Store types | Pairs of (store type, supermarket) for the same item, district and month; typical ratio = exp(median of log ratios) | §3 |
 | East vs West | Median of state medians per region, items sold in 2+ East and 8+ Peninsular states | §4 |
+| Forecast | Naive, seasonal naive, ETS and Holt-Winters backtested from 52 weekly starting points, MAPE over 1 to 8 weeks; 80% band from past errors | `src/forecast.py` |
 
 Data: PriceCatcher, Ministry of Domestic Trade and Cost of Living (KPDN) and DOSM, via OpenDOSM /
 data.gov.my, licensed CC BY 4.0.
