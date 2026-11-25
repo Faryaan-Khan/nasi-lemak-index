@@ -165,7 +165,7 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 1110,"Eggs, grade B (30)",2026-12-14,forecast,holt_winters,12.89,11.2,14.67,False
 1110,"Eggs, grade B (30)",2026-12-21,forecast,holt_winters,12.85,10.84,15.4,False
 1110,"Eggs, grade B (30)",2026-12-28,forecast,holt_winters,12.71,10.52,15.57,False
-1110,"Eggs, grade B (30)",2027-01-04,forecast,holt_winters,12.61,10.31,15.65,False
+1110,"Eggs, grade B (30)",2027-01-04,forecast,holt_winters,12.61,10.31,15.66,False
 1110,"Eggs, grade B (30)",2027-01-11,forecast,holt_winters,12.55,10.39,15.75,False
 904,"Rice, Cap Rambutan 5% (10 kg)",2025-11-24,actual,,35.99,,,
 904,"Rice, Cap Rambutan 5% (10 kg)",2025-12-01,actual,,36.5,,,
@@ -413,9 +413,9 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 94,Red chilli (1 kg),2027-01-11,forecast,ets,12.95,8.41,18.4,False
 94,Red chilli (1 kg),2026-11-23,forecast,holt_winters,13.26,11.84,14.47,False
 94,Red chilli (1 kg),2026-11-30,forecast,holt_winters,14.01,12.27,16.13,False
-94,Red chilli (1 kg),2026-12-07,forecast,holt_winters,14.92,12.58,17.47,False
+94,Red chilli (1 kg),2026-12-07,forecast,holt_winters,14.92,12.57,17.47,False
 94,Red chilli (1 kg),2026-12-14,forecast,holt_winters,15.23,12.47,17.58,False
 94,Red chilli (1 kg),2026-12-21,forecast,holt_winters,13.8,11.34,16.65,False
 94,Red chilli (1 kg),2026-12-28,forecast,holt_winters,14.87,11.49,18.61,False
-94,Red chilli (1 kg),2027-01-04,forecast,holt_winters,15.08,11.08,18.45,False
+94,Red chilli (1 kg),2027-01-04,forecast,holt_winters,15.08,11.07,18.45,False
 94,Red chilli (1 kg),2027-01-11,forecast,holt_winters,14.75,9.9,18.39,False
