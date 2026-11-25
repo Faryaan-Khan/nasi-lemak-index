@@ -12,14 +12,15 @@
 chicken and chilli prices jump before Hari Raya? Does the hypermarket really charge more than the
 wet market down the road?**
 
-This project answers those questions with the Malaysian government's own price data: **47 million
-price records** from over 2,100 shops in every state, collected by KPDN field officers and published
+This project answers those questions with the Malaysian government's own price data: **130 million
+price records** since January 2022 from nearly 4,000 shops in every state, collected by KPDN field officers and published
 by DOSM. Build a shopping basket and see where in Malaysia it's cheapest, which items spike before
 festive seasons, and which store types charge more for the same item.
 
 > **Status (Nov 2026):** the data pipeline is live and refreshes itself every night, and the
-> 47M rows are profiled, cleaned (Phase 2) and aggregated into dashboard-ready tables (Phase 3).
-> Basket definitions and the festive calendar (Phase 4) are next. Dashboard screenshots, headline insights and a live link
+> 130M rows since 2022 are profiled, cleaned (Phase 2), aggregated into dashboard-ready tables
+> (Phase 3), and turned into basket costs and festive price windows using official holiday dates
+> (Phase 4). The analysis write-up (Phase 5) is next. Dashboard screenshots, headline insights and a live link
 > will appear here as each phase lands. See the [roadmap](#roadmap).
 
 ---
@@ -40,8 +41,8 @@ These come from the pipeline's own coverage table,
 Price findings will be added once cleaning is done, because numbers from uncleaned data would be
 misleading.
 
-- **47,365,287 price records** over the last 24 months (Dec 2024 to Nov 2026), about 60 MB of
-  compressed parquet, queried on a laptop with DuckDB.
+- **130,548,639 price records** from January 2022 to November 2026, about 170 MB of compressed
+  parquet, queried on a laptop with DuckDB.
 - **1.4 to 2.7 million prices a month**, covering ~340 items at ~2,100 shops.
 - **The survey changed shape in mid-2025:** shops covered jumped from ~1,670 to ~2,400 in July
   2025 (settling at ~2,100 since), and the item list shrank from ~515 to ~345 in August 2025. Any trend analysis has to compare
@@ -49,14 +50,15 @@ misleading.
 - **Collection gaps are real:** some months are missing days (October 2026 starts on the 10th),
   so every weekly figure carries an observation count.
 - Data quirks found and documented before cleaning: placeholder `-1` shop and item codes,
-  inconsistent category labels, and ~1.9% of rows with item codes missing from the item lookup.
+  inconsistent category labels, ~1.9% of rows with item codes missing from the item lookup, and
+  items dropped from the survey (ikan bilis hasn't been priced since July 2025).
   Full list in [`docs/schema.md`](docs/schema.md).
 
 ## How it works
 
 ```mermaid
 flowchart LR
-    A["data.gov.my<br/>PriceCatcher parquet<br/>(monthly files + lookups)"] -->|"src/download.py<br/>only changed files (ETag)"| B[("data/raw<br/>~47M rows")]
+    A["data.gov.my<br/>PriceCatcher parquet<br/>(monthly files + lookups)"] -->|"src/download.py<br/>only changed files (ETag)"| B[("data/raw<br/>~130M rows")]
     B -->|"sql/*.sql<br/>DuckDB"| C[("data/staging<br/>cleaned, outliers flagged")]
     C -->|"sql/*.sql<br/>DuckDB"| D[("data/marts<br/>small aggregated tables")]
     D --> E["Power BI<br/>dashboard"]
@@ -68,7 +70,7 @@ flowchart LR
 **Design choices**
 
 - **SQL first, on millions of rows.** All heavy lifting is plain SQL in [`sql/`](sql/), run by
-  DuckDB directly on parquet files. No database server, no loading 47M rows into pandas.
+  DuckDB directly on parquet files. No database server, no loading 130M rows into pandas.
 - **Thin, trustworthy marts.** Power BI and Streamlit only read small pre-aggregated tables in
   `data/marts/`. Figures use **medians**, and each one carries the observation count behind it.
 - **Outliers are flagged, not deleted.** Unit mix-ups and typos are marked per item and month so
@@ -81,10 +83,10 @@ Malaysia time** on GitHub's servers:
 
 1. Restores yesterday's raw files from the Actions cache.
 2. Downloads **only files whose fingerprint (ETag) changed**, usually just the current month.
-   A full re-check of 24 months takes about 10 seconds.
+   A full re-check of all 59 months takes a few seconds.
 3. Checks the raw data (expected columns, no missing or zero prices, data less than 14 days old).
-4. Cleans all 47M rows and rebuilds the summary tables with DuckDB SQL.
-5. Runs 28 tests on the cleaned data and summary tables. **If anything fails, nothing is published.**
+4. Cleans all 130M rows and rebuilds the summary tables with DuckDB SQL.
+5. Runs 38 tests on the cleaned data and summary tables. **If anything fails, nothing is published.**
 6. Commits the small CSV tables and replaces the large ones on the
    [`data-latest` release](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/tag/data-latest).
 
@@ -94,12 +96,21 @@ Every figure is a **median** backed by **at least 3 shops**, with the price and 
 
 | Table | One row per | Rows | Get it |
 |---|---|---|---|
-| `dim_item` | item: name, unit, category | ~500 | [CSV](data/marts/dim_item.csv) |
+| `dim_item` | item: name, unit, category | ~790 | [CSV](data/marts/dim_item.csv) |
 | `dim_district` | district: state, region, shops by type | 169 | [CSV](data/marts/dim_district.csv) |
-| `item_national_week` | item × week, all Malaysia | ~34k | [CSV](data/marts/item_national_week.csv) |
-| `item_state_week` | item × state × week | ~417k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_state_week.parquet) |
-| `item_district_week` | item × district × week | ~2.2M | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_district_week.parquet) |
-| `item_premisetype_district_month` | item × store type × district × month | ~825k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_premisetype_district_month.parquet) |
+| `item_national_week` | item × week, all Malaysia, since 2022 | ~100k | [CSV](data/marts/item_national_week.csv) |
+| `item_state_week` | item × state × week, last 2 years | ~414k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_state_week.parquet) |
+| `item_district_week` | item × district × week, last 2 years | ~2.2M | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_district_week.parquet) |
+| `item_premisetype_district_month` | item × store type × district × month, last 2 years | ~825k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/item_premisetype_district_month.parquet) |
+| `basket_cost_national_week` | basket × week, since 2022 | ~700 | [CSV](data/marts/basket_cost_national_week.csv) |
+| `basket_cost_state_week` | basket × state × week | ~3.3k | [CSV](data/marts/basket_cost_state_week.csv) |
+| `basket_cost_district_week` | basket × district × week | ~10.6k | [parquet](https://github.com/Faryaan-Khan/nasi-lemak-index/releases/download/data-latest/basket_cost_district_week.parquet) |
+| `festive_window` | festival × item × week (−12 to +2), price index vs own baseline | ~76k | [CSV](data/marts/festive_window.csv) |
+
+Baskets (Nasi Lemak, Student weekly, Family weekly) are defined in
+[`data/reference/baskets.csv`](data/reference/baskets.csv) with real item codes; quantities are
+illustrative. Festival dates for 2022–2027 are in
+[`data/reference/festive_calendar.csv`](data/reference/festive_calendar.csv), each with its official source.
 
 The large tables live on a release that is overwritten nightly, so the git history doesn't grow
 by megabytes every day.
@@ -130,9 +141,9 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
 .\.venv\Scripts\python.exe src\check_remote.py   # smoke test: DuckDB reads PriceCatcher over HTTPS
-.\.venv\Scripts\python.exe src\download.py       # last 24 months into data/raw (add --all for 2022 onwards)
+.\.venv\Scripts\python.exe src\download.py --all # everything since 2022 into data/raw (default: last 24 months)
 .\.venv\Scripts\python.exe src\checks.py         # data-quality checks
-.\.venv\Scripts\python.exe src\build.py          # run sql/ files: clean 47M rows (~10 s)
+.\.venv\Scripts\python.exe src\build.py          # run sql/ files: clean 130M rows and build tables (~7 min)
 .\.venv\Scripts\python.exe -m pytest             # tests
 ```
 
@@ -146,7 +157,7 @@ On macOS or Linux, use `.venv/bin/python` and forward slashes instead.
 | 1 | Resumable downloader, data-quality checks, daily GitHub Actions refresh | ✅ Done |
 | 2 | Profile the data and clean it in SQL (placeholders, outliers, name standardisation) | ✅ Done |
 | 3 | Marts: weekly item × district/state/national medians, store-type × district monthly medians | ✅ Done |
-| 4 | Basket definitions (Nasi Lemak, Student, Family) and an official festive calendar | ⏳ Planned |
+| 4 | Basket definitions (Nasi Lemak, Student, Family) and an official festive calendar | ✅ Done |
 | 5 | Analysis: cheapest regions, festive spikes, store-type premium, East vs West Malaysia | ⏳ Planned |
 | 6 | Forecast for 3–5 key items, ETS vs seasonal-naive baseline, holdout MAPE reported honestly | ⏳ Planned |
 | 7 | Power BI dashboard: Overview, Basket Builder, Festive Spikes, Store-Type Premium, Forecast | ⏳ Planned |
@@ -180,7 +191,7 @@ measuring inflation. The Consumer Price Index (CPI) is Malaysia's official infla
 - Coverage changes over time (items and shops are added and dropped), so long-run trends are only
   reported for items present throughout.
 - Some days and weeks are thin or missing; figures show the observation count behind them.
-- Restaurants and food courts appear as shop types but have no prices in the last 24 months, so
+- Restaurants and food courts appear as shop types but have no prices since 2022, so
   the analysis covers grocery retail only (supermarkets, hypermarkets, minimarts, wet markets,
   sundry shops).
 - 0.71% of prices are flagged as outliers (typos, unit mix-ups) and left out of the figures; 1.9%

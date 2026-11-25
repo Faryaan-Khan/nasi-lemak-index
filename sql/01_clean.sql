@@ -91,12 +91,14 @@ COPY (
                                              AS is_outlier
     FROM read_parquet('data/raw/pricecatcher_*.parquet') AS f
     JOIN dim_premise AS p
-        ON f.premise_code = p.premise_code                 -- drops placeholder / unknown shops
+        ON f.premise_code = p.premise_code                 -- drops placeholder shop -1 (156 rows, 2022-23) and
+                                                           -- shops missing from the lookup (273 rows, 2024)
     LEFT JOIN dim_item AS i
         ON f.item_code = i.item_code                       -- keeps unknown items, flagged
     JOIN item_month_stats AS s
         ON f.item_code = s.item_code
        AND date_trunc('month', f.date) = s.month
+    WHERE f.item_code > 0                                  -- 1 row in 2022 uses the placeholder item -1
 
 ) TO 'data/staging/prices_clean.parquet' (FORMAT PARQUET, COMPRESSION ZSTD);
 

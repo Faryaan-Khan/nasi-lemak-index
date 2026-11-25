@@ -23,6 +23,12 @@ def main() -> None:
     (PROJECT_ROOT / "data" / "marts").mkdir(parents=True, exist_ok=True)
 
     con = duckdb.connect()  # in-memory: all results are written out as parquet/csv files
+    # Safety limits. When a query needs more memory than the computer has, DuckDB writes
+    # temporary files to disk. Cap that at 20 GB so a heavy query fails cleanly instead of
+    # filling the whole disk (this happened once, see docs/notes.md, Phase 4).
+    con.execute("SET max_temp_directory_size = '20GiB'")
+    # We never rely on row order inside a query, so let DuckDB skip keeping it (saves memory).
+    con.execute("SET preserve_insertion_order = false")
     for sql_file in sorted(SQL_DIR.glob("*.sql")):
         start = time.perf_counter()
         print(f"Running {sql_file.name} ...", end=" ", flush=True)

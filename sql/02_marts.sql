@@ -13,7 +13,7 @@
 -- Outputs (data/marts/)
 --   dim_item.csv                                 item names, units, categories        (committed)
 --   dim_district.csv                             state, district, region, shop counts (committed)
---   item_national_week.csv                       item x week, all Malaysia            (committed)
+--   item_national_week.csv                       item x week, all Malaysia, since 2022 (committed)
 --   item_state_week.parquet                      item x state x week                  (GitHub release)
 --   item_district_week.parquet                   item x district x week               (GitHub release)
 --   item_premisetype_district_month.parquet      item x store type x district x month (GitHub release)
@@ -25,6 +25,15 @@ SELECT *
 FROM read_parquet('data/staging/prices_clean.parquet')
 WHERE item_known
   AND NOT is_outlier;
+
+-- The full history (2022 onwards, ~130M rows) is only needed for the national table, which feeds
+-- the festive analysis and the forecast. The detailed state / district / store-type tables use
+-- the most recent 104 weeks (2 years): enough for "where is it cheapest now", and it keeps the
+-- build within a laptop's memory.
+CREATE OR REPLACE TEMP VIEW recent AS
+SELECT *
+FROM usable
+WHERE week_start > (SELECT MAX(week_start) FROM usable) - INTERVAL 104 WEEK;
 
 
 -- 1. Item lookup (only items that actually have prices) --------------------------------
@@ -46,25 +55,37 @@ COPY (
            COUNT(DISTINCT premise_code) FILTER (WHERE premise_type = 'Pasar Mini')               AS minimarkets,
            COUNT(DISTINCT premise_code) FILTER (WHERE premise_type = 'Pasar Basah')              AS wet_markets,
            COUNT(DISTINCT premise_code) FILTER (WHERE premise_type = 'Kedai Runcit')             AS sundry_shops
-    FROM usable
+    FROM recent
     GROUP BY ALL
     ORDER BY state, district
 ) TO 'data/marts/dim_district.csv' (HEADER);
 
 
--- 3. National weekly median per item (used for trends and the forecast) -------------------
+-- 3. National weekly median per item, full history (for festive spikes and the forecast) --
+-- Built in two steps on purpose: asking for two COUNT(DISTINCT ...) in one query over ~130M rows
+-- needed more than 20 GB of temporary disk on a 16 GB laptop. Each step alone takes ~1 minute.
+CREATE OR REPLACE TEMP TABLE national_prices AS
+SELECT item_code,
+       week_start,
+       round(median(price), 2)          AS median_price,
+       quantile_disc(price, 0.25)       AS p25_price,  -- an actual observed price (no interpolation), so results are identical on every computer
+       quantile_disc(price, 0.75)       AS p75_price,
+       COUNT(*)                         AS n_obs,
+       COUNT(DISTINCT premise_code)     AS n_shops
+FROM usable
+GROUP BY ALL
+HAVING COUNT(DISTINCT premise_code) >= 3;
+
+CREATE OR REPLACE TEMP TABLE national_days AS
+SELECT item_code, week_start,
+       COUNT(DISTINCT date) AS n_days   -- < 7 means a partial or patchy week
+FROM usable
+GROUP BY ALL;
+
 COPY (
-    SELECT item_code,
-           week_start,
-           round(median(price), 2)          AS median_price,
-           quantile_disc(price, 0.25)       AS p25_price,  -- an actual observed price (no interpolation), so results are identical on every computer
-           quantile_disc(price, 0.75)       AS p75_price,
-           COUNT(*)                         AS n_obs,
-           COUNT(DISTINCT premise_code)     AS n_shops,
-           COUNT(DISTINCT date)             AS n_days   -- < 7 means a partial or patchy week
-    FROM usable
-    GROUP BY ALL
-    HAVING COUNT(DISTINCT premise_code) >= 3
+    SELECT p.*, d.n_days
+    FROM national_prices AS p
+    JOIN national_days AS d USING (item_code, week_start)
     ORDER BY item_code, week_start
 ) TO 'data/marts/item_national_week.csv' (HEADER);
 
@@ -75,7 +96,7 @@ COPY (
            round(median(price), 2)      AS median_price,
            COUNT(*)                     AS n_obs,
            COUNT(DISTINCT premise_code) AS n_shops
-    FROM usable
+    FROM recent
     GROUP BY ALL
     HAVING COUNT(DISTINCT premise_code) >= 3
     ORDER BY item_code, state, week_start
@@ -88,7 +109,7 @@ COPY (
            round(median(price), 2)      AS median_price,
            COUNT(*)                     AS n_obs,
            COUNT(DISTINCT premise_code) AS n_shops
-    FROM usable
+    FROM recent
     GROUP BY ALL
     HAVING COUNT(DISTINCT premise_code) >= 3
     ORDER BY item_code, state, district, week_start
@@ -102,7 +123,7 @@ COPY (
            round(median(price), 2)      AS median_price,
            COUNT(*)                     AS n_obs,
            COUNT(DISTINCT premise_code) AS n_shops
-    FROM usable
+    FROM recent
     GROUP BY ALL
     HAVING COUNT(DISTINCT premise_code) >= 3
     ORDER BY item_code, state, district, month, premise_type

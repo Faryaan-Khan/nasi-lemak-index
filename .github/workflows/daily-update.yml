@@ -30,7 +30,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -49,7 +49,7 @@ jobs:
           restore-keys: pricecatcher-raw-
 
       - name: Download new or changed files
-        run: python src/download.py --months 24
+        run: python src/download.py --all   # full history since 2022 (needed for festive comparisons)
 
       - name: Check the raw data
         run: python src/checks.py

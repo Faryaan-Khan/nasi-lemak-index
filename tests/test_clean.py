@@ -37,8 +37,15 @@ def test_every_row_has_a_known_shop_location(con):
     assert one(con, "SELECT COUNT(*) FROM clean WHERE state IS NULL OR district IS NULL OR premise_type IS NULL") == 0
 
 
-def test_no_rows_lost_apart_from_placeholder_shops(con):
-    raw = one(con, f"SELECT COUNT(*) FROM read_parquet('{RAW}') WHERE premise_code > 0")
+def test_no_rows_lost_apart_from_placeholders_and_unknown_shops(con):
+    # Rows are only dropped when the shop is the placeholder -1, the shop is missing from the
+    # shop lookup (no location, so unusable), or the item is the placeholder -1.
+    lookup = (ROOT / "data" / "raw" / "lookup_premise.parquet").as_posix()
+    raw = one(
+        con,
+        f"SELECT COUNT(*) FROM read_parquet('{RAW}') WHERE item_code > 0 AND premise_code IN "
+        f"(SELECT premise_code FROM read_parquet('{lookup}') WHERE premise_code > 0 AND state IS NOT NULL)",
+    )
     assert one(con, "SELECT COUNT(*) FROM clean") == raw
 
 

@@ -166,3 +166,61 @@ GitHub's Linux server than on my Windows laptop (floating-point rounding when in
 between two prices), which would have caused a noisy commit every day. They now use
 `quantile_disc`, which returns an actual observed price, so results are identical everywhere.
 Week and month columns are now plain dates instead of timestamps.
+
+## Phase 4: Baskets and festive calendar
+
+**What I did**
+- `data/reference/festive_calendar.csv`: Chinese New Year, Hari Raya Aidilfitri and Deepavali for
+  2022 to 2027, every row with its source. 2023 to 2027 come from the Prime Minister's Department
+  federal holiday schedules (kabinet.gov.my). Hari Raya dates depend on moon sighting, so past
+  years were checked against the Keeper of the Rulers' Seal's declaration (e.g. 2026 was declared
+  on 19 March for Saturday 21 March). 2022 isn't on the JPM page, so it comes from the official
+  declaration (Raya) and state holiday lists (CNY, Deepavali). 2027 dates are marked `scheduled`.
+- `data/reference/baskets.csv`: three baskets (Nasi Lemak, Student weekly, Family weekly) with
+  real `item_code`s, the exact unit from the government item list, and a quantity.
+- `sql/03_baskets_festive.sql` builds:
+  - `basket_cost_national_week.csv`, `basket_cost_state_week.csv`, `basket_cost_district_week.parquet`
+  - `festive_window.csv`: for every festival and item, weekly price index from 12 weeks before to
+    2 weeks after, where the item's own baseline (median of weeks -12 to -9) = 100.
+- `tests/test_reference.py`: 10 tests (every festival has a dated, sourced row per year; spot checks
+  against official dates; basket items and units match the government list; basket costs only for
+  complete baskets; festive index averages 100 in the baseline weeks).
+- **The pipeline now uses the full history since January 2022: 130.5M rows.** One extra year of
+  festivals isn't enough to compare patterns; five years is.
+
+**Decisions and why**
+| Decision | Why |
+|---|---|
+| Ikan bilis is **not** in the Nasi Lemak basket | It was dropped from the survey in July 2025 (last price 14 Jul 2025), so the basket would break mid-way. Said openly rather than swapped for something else |
+| Rice = Beras Super Cap Rambutan 5% 10 kg | There's no unbranded rice item. This one is priced every week since Jan 2022, so baskets compare across all years (another popular brand only starts in Apr 2024) |
+| Quantities are illustrative | They are my assumptions about a household's needs, not data. Item codes, units and prices are data |
+| A basket cost is only shown when every item has a price there that week | A partial basket would look falsely cheap. Trade-off: the 18-item Family basket is complete in 47 districts, the Nasi Lemak basket in 77 |
+| Festive baseline = weeks -12 to -9 | Far enough before the festival that festive buying hasn't started yet |
+| Only festivals that have already happened | A future festival would show a half-empty window |
+| CNY 2022 has no window | Its baseline weeks are in late 2021, before the data starts |
+
+**First numbers (national, weekly medians)**
+- Nasi Lemak basket: RM 19.42 average in 2022 vs RM 21.50 in 2026 so far. Student weekly
+  RM 51.91 vs RM 56.12. Family weekly RM 135.57 vs RM 143.49.
+- Latest Family weekly basket by state ranges from RM 141.67 (Kedah) upward; Sabah is missing
+  because not every item has 3+ shops there each week.
+
+**Performance lesson: 130 million rows on a laptop**
+- The first full-history build filled 62 GB of temporary disk and crashed. DuckDB spills to disk
+  when a query needs more memory than the laptop has (16 GB).
+- Cause: one query asked for two `COUNT(DISTINCT ...)` at once over 130M rows. Each one alone takes
+  about a minute; together they blew up. Fix: compute them in two steps and join.
+- The detailed district / state / store-type tables now use the latest 104 weeks; only the national
+  table keeps the full history (that's all the festive analysis needs).
+- `src/build.py` now caps DuckDB's temporary disk use at 20 GB, so a heavy query fails cleanly
+  instead of filling the disk. Full build: ~6 to 7 minutes.
+
+**Data quirks found in the older data**
+- 156 rows (2022 to 2023) use the placeholder shop `-1`, 1 row (2022) the placeholder item `-1`,
+  and 273 rows (2024) point to shops missing from the shop list. All dropped (no location or name).
+
+**Interview one-liner**
+"I took the festival dates from the Prime Minister's Department schedules and checked the moon-sighting
+ones against the official declarations, built baskets from real item codes and said openly when an
+item, ikan bilis, had been dropped from the survey, and then scaled the pipeline to 130 million
+rows by finding the one query that blew the memory."
