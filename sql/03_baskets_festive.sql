@@ -20,13 +20,15 @@ SELECT basket, COUNT(*) AS items_in_basket FROM baskets GROUP BY 1;
 
 -- 1. Basket cost ---------------------------------------------------------------------------
 -- cost = sum over the basket's items of (median price x quantity).
+-- The sum uses exact DECIMAL arithmetic: adding floating-point numbers in a different order
+-- (DuckDB works in parallel) can change the last cent, which would cause noisy daily commits.
 -- A basket cost is only reported when EVERY item in the basket has a price in that place and
 -- week (each backed by >= 3 shops, as in 02_marts.sql). A partial basket would look cheaper than
 -- it really is, so incomplete ones are dropped rather than shown.
 
 COPY (
     SELECT b.basket, n.week_start,
-           round(SUM(n.median_price * b.quantity), 2) AS basket_cost,
+           round(SUM(CAST(n.median_price * b.quantity AS DECIMAL(12, 4))), 2) AS basket_cost,
            COUNT(*)                                   AS items_priced,
            MIN(n.n_shops)                             AS min_shops_per_item
     FROM 'data/marts/item_national_week.csv' AS n
@@ -38,7 +40,7 @@ COPY (
 
 COPY (
     SELECT b.basket, s.state, s.region, s.week_start,
-           round(SUM(s.median_price * b.quantity), 2) AS basket_cost,
+           round(SUM(CAST(s.median_price * b.quantity AS DECIMAL(12, 4))), 2) AS basket_cost,
            COUNT(*)                                   AS items_priced,
            MIN(s.n_shops)                             AS min_shops_per_item
     FROM 'data/marts/item_state_week.parquet' AS s
@@ -50,7 +52,7 @@ COPY (
 
 COPY (
     SELECT b.basket, d.state, d.district, d.region, d.week_start,
-           round(SUM(d.median_price * b.quantity), 2) AS basket_cost,
+           round(SUM(CAST(d.median_price * b.quantity AS DECIMAL(12, 4))), 2) AS basket_cost,
            COUNT(*)                                   AS items_priced,
            MIN(d.n_shops)                             AS min_shops_per_item
     FROM 'data/marts/item_district_week.parquet' AS d

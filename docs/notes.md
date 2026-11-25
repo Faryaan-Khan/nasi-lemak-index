@@ -224,3 +224,9 @@ Week and month columns are now plain dates instead of timestamps.
 ones against the official declarations, built baskets from real item codes and said openly when an
 item, ikan bilis, had been dropped from the survey, and then scaled the pipeline to 130 million
 rows by finding the one query that blew the memory."
+
+**Fixes after the first full-history cloud run:** the data-quality gate stopped the run (nothing
+was published). The 2022 files store `date` as a midnight timestamp instead of a plain date,
+which broke the freshness check; the clean table now casts every date to `DATE`, with a test.
+Basket costs now add up in exact `DECIMAL` arithmetic, because adding floating-point numbers in a
+different order (DuckDB works in parallel) changed the last cent between runs.

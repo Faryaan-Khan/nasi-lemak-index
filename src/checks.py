@@ -52,7 +52,7 @@ def run_checks() -> list[str]:
         f"""
         SELECT COUNT(*) FILTER (WHERE price IS NULL OR price <= 0),
                COUNT(*) FILTER (WHERE date IS NULL OR item_code IS NULL OR premise_code IS NULL),
-               COUNT(*), MAX(date)
+               COUNT(*), CAST(MAX(date) AS DATE)  -- 2022 files store date as TIMESTAMP
         FROM read_parquet('{prices}')
         """
     ).fetchone()

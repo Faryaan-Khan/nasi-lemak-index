@@ -49,6 +49,12 @@ def test_no_rows_lost_apart_from_placeholders_and_unknown_shops(con):
     assert one(con, "SELECT COUNT(*) FROM clean") == raw
 
 
+def test_date_columns_are_plain_dates(con):
+    # 2022 raw files store date as TIMESTAMP; the clean table must use DATE everywhere.
+    types = dict((r[0], r[1]) for r in con.execute("DESCRIBE SELECT date, week_start, month FROM clean").fetchall())
+    assert types == {"date": "DATE", "week_start": "DATE", "month": "DATE"}
+
+
 def test_text_is_trimmed(con):
     untrimmed = one(
         con,

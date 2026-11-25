@@ -69,7 +69,7 @@ GROUP BY ALL;
 -- because we can't name those items but shouldn't pretend they don't exist.
 COPY (
     SELECT
-        f.date,
+        CAST(f.date AS DATE)        AS date,         -- 2022 files store date as a midnight TIMESTAMP
         CAST(date_trunc('week', f.date) AS DATE)  AS week_start,   -- weeks start on Monday
         CAST(date_trunc('month', f.date) AS DATE) AS month,
         f.premise_code,
