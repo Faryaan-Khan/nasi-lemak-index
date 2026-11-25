@@ -45,12 +45,12 @@ COPY (
         HAVING COUNT(*) = (SELECT items_in_basket FROM basket_size z WHERE z.basket = b.basket)
     )
     SELECT basket, state, region, basket_cost,
-           rank() OVER (PARTITION BY basket ORDER BY basket_cost) AS rank_cheapest,
+           rank() OVER (PARTITION BY basket ORDER BY basket_cost, state) AS rank_cheapest,
            round(basket_cost - MIN(basket_cost) OVER (PARTITION BY basket), 2) AS rm_above_cheapest,
            (SELECT first_week FROM quarter) AS first_week,
            (SELECT last_week FROM quarter)  AS last_week
     FROM costs
-    ORDER BY basket, basket_cost
+    ORDER BY basket, basket_cost, state
 ) TO 'data/marts/insight_basket_state_quarter.csv' (HEADER);
 
 COPY (
@@ -176,7 +176,7 @@ COPY (
     FROM labelled
     GROUP BY item_group, premise_type
     HAVING COUNT(*) >= 200
-    ORDER BY item_group = 'All items' DESC, item_group, median_premium_pct
+    ORDER BY item_group = 'All items' DESC, item_group, median_premium_pct, premise_type  -- tie-breaker keeps the file identical run to run
 ) TO 'data/marts/insight_storetype_premium.csv' (HEADER);
 
 
