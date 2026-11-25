@@ -117,8 +117,8 @@ def write_coverage(con: duckdb.DuckDBPyConnection) -> None:
         COPY (
             SELECT strftime(date, '%Y-%m')     AS month,
                    COUNT(*)                    AS rows,
-                   MIN(date)                   AS first_date,
-                   MAX(date)                   AS last_date,
+                   CAST(MIN(date) AS DATE)     AS first_date,   -- 2022 files store date as TIMESTAMP
+                   CAST(MAX(date) AS DATE)     AS last_date,
                    COUNT(DISTINCT date)        AS days_with_data,
                    COUNT(DISTINCT item_code)   AS items,
                    COUNT(DISTINCT premise_code) AS premises
