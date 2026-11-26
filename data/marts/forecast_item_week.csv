@@ -1,5 +1,4 @@
 item_code,item,week_start,kind,model,price,low_80,high_80,is_best
-1,"Chicken (standard, 1 kg)",2025-11-24,actual,,8.7,,,
 1,"Chicken (standard, 1 kg)",2025-12-01,actual,,8.79,,,
 1,"Chicken (standard, 1 kg)",2025-12-08,actual,,8.7,,,
 1,"Chicken (standard, 1 kg)",2025-12-15,actual,,8.39,,,
@@ -51,15 +50,15 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 1,"Chicken (standard, 1 kg)",2026-11-02,actual,,7.89,,,
 1,"Chicken (standard, 1 kg)",2026-11-09,actual,,8.19,,,
 1,"Chicken (standard, 1 kg)",2026-11-16,actual,,8.49,,,
-1,"Chicken (standard, 1 kg)",2026-11-23,forecast,naive,8.49,8.29,8.71,True
-1,"Chicken (standard, 1 kg)",2026-11-30,forecast,naive,8.49,8.11,8.88,True
-1,"Chicken (standard, 1 kg)",2026-12-07,forecast,naive,8.49,7.94,9.0,True
-1,"Chicken (standard, 1 kg)",2026-12-14,forecast,naive,8.49,7.8,9.11,True
-1,"Chicken (standard, 1 kg)",2026-12-21,forecast,naive,8.49,7.75,9.21,True
-1,"Chicken (standard, 1 kg)",2026-12-28,forecast,naive,8.49,7.74,9.3,True
-1,"Chicken (standard, 1 kg)",2027-01-04,forecast,naive,8.49,7.49,9.39,True
-1,"Chicken (standard, 1 kg)",2027-01-11,forecast,naive,8.49,7.49,9.39,True
-1,"Chicken (standard, 1 kg)",2026-11-23,forecast,seasonal_naive,8.7,8.11,10.37,False
+1,"Chicken (standard, 1 kg)",2026-11-23,actual,,8.59,,,
+1,"Chicken (standard, 1 kg)",2026-11-30,forecast,naive,8.59,8.39,8.82,True
+1,"Chicken (standard, 1 kg)",2026-12-07,forecast,naive,8.59,8.21,8.98,True
+1,"Chicken (standard, 1 kg)",2026-12-14,forecast,naive,8.59,7.89,9.11,True
+1,"Chicken (standard, 1 kg)",2026-12-21,forecast,naive,8.59,7.86,9.2,True
+1,"Chicken (standard, 1 kg)",2026-12-28,forecast,naive,8.59,7.83,9.3,True
+1,"Chicken (standard, 1 kg)",2027-01-04,forecast,naive,8.59,7.6,9.31,True
+1,"Chicken (standard, 1 kg)",2027-01-11,forecast,naive,8.59,7.58,9.5,True
+1,"Chicken (standard, 1 kg)",2027-01-18,forecast,naive,8.59,7.58,9.5,True
 1,"Chicken (standard, 1 kg)",2026-11-30,forecast,seasonal_naive,8.79,8.2,10.48,False
 1,"Chicken (standard, 1 kg)",2026-12-07,forecast,seasonal_naive,8.7,8.11,10.37,False
 1,"Chicken (standard, 1 kg)",2026-12-14,forecast,seasonal_naive,8.39,7.82,10.0,False
@@ -67,23 +66,23 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 1,"Chicken (standard, 1 kg)",2026-12-28,forecast,seasonal_naive,8.69,8.01,10.36,False
 1,"Chicken (standard, 1 kg)",2027-01-04,forecast,seasonal_naive,8.9,8.12,10.61,False
 1,"Chicken (standard, 1 kg)",2027-01-11,forecast,seasonal_naive,8.9,8.12,10.61,False
-1,"Chicken (standard, 1 kg)",2026-11-23,forecast,ets,8.49,8.29,8.71,False
-1,"Chicken (standard, 1 kg)",2026-11-30,forecast,ets,8.49,8.11,8.88,False
-1,"Chicken (standard, 1 kg)",2026-12-07,forecast,ets,8.49,7.94,9.0,False
-1,"Chicken (standard, 1 kg)",2026-12-14,forecast,ets,8.49,7.8,9.11,False
-1,"Chicken (standard, 1 kg)",2026-12-21,forecast,ets,8.49,7.74,9.21,False
-1,"Chicken (standard, 1 kg)",2026-12-28,forecast,ets,8.49,7.74,9.3,False
-1,"Chicken (standard, 1 kg)",2027-01-04,forecast,ets,8.49,7.49,9.39,False
-1,"Chicken (standard, 1 kg)",2027-01-11,forecast,ets,8.49,7.49,9.39,False
-1,"Chicken (standard, 1 kg)",2026-11-23,forecast,holt_winters,8.47,8.14,8.83,False
-1,"Chicken (standard, 1 kg)",2026-11-30,forecast,holt_winters,8.44,7.97,9.07,False
-1,"Chicken (standard, 1 kg)",2026-12-07,forecast,holt_winters,8.45,7.74,9.16,False
-1,"Chicken (standard, 1 kg)",2026-12-14,forecast,holt_winters,8.39,7.71,9.18,False
-1,"Chicken (standard, 1 kg)",2026-12-21,forecast,holt_winters,8.44,7.64,9.33,False
-1,"Chicken (standard, 1 kg)",2026-12-28,forecast,holt_winters,8.53,7.42,9.5,False
-1,"Chicken (standard, 1 kg)",2027-01-04,forecast,holt_winters,8.55,7.34,9.65,False
-1,"Chicken (standard, 1 kg)",2027-01-11,forecast,holt_winters,8.57,7.44,9.85,False
-1110,"Eggs, grade B (30)",2025-11-24,actual,,11.0,,,
+1,"Chicken (standard, 1 kg)",2027-01-18,forecast,seasonal_naive,8.99,8.2,10.72,False
+1,"Chicken (standard, 1 kg)",2026-11-30,forecast,ets,8.59,8.39,8.82,False
+1,"Chicken (standard, 1 kg)",2026-12-07,forecast,ets,8.59,8.21,8.98,False
+1,"Chicken (standard, 1 kg)",2026-12-14,forecast,ets,8.59,7.89,9.11,False
+1,"Chicken (standard, 1 kg)",2026-12-21,forecast,ets,8.59,7.86,9.2,False
+1,"Chicken (standard, 1 kg)",2026-12-28,forecast,ets,8.59,7.83,9.3,False
+1,"Chicken (standard, 1 kg)",2027-01-04,forecast,ets,8.59,7.6,9.31,False
+1,"Chicken (standard, 1 kg)",2027-01-11,forecast,ets,8.59,7.58,9.5,False
+1,"Chicken (standard, 1 kg)",2027-01-18,forecast,ets,8.59,7.58,9.5,False
+1,"Chicken (standard, 1 kg)",2026-11-30,forecast,holt_winters,8.56,8.22,8.92,False
+1,"Chicken (standard, 1 kg)",2026-12-07,forecast,holt_winters,8.56,8.0,9.2,False
+1,"Chicken (standard, 1 kg)",2026-12-14,forecast,holt_winters,8.51,7.76,9.22,False
+1,"Chicken (standard, 1 kg)",2026-12-21,forecast,holt_winters,8.56,7.81,9.37,False
+1,"Chicken (standard, 1 kg)",2026-12-28,forecast,holt_winters,8.64,7.68,9.55,False
+1,"Chicken (standard, 1 kg)",2027-01-04,forecast,holt_winters,8.67,7.51,9.65,False
+1,"Chicken (standard, 1 kg)",2027-01-11,forecast,holt_winters,8.69,7.46,9.8,False
+1,"Chicken (standard, 1 kg)",2027-01-18,forecast,holt_winters,8.63,7.49,9.92,False
 1110,"Eggs, grade B (30)",2025-12-01,actual,,11.6,,,
 1110,"Eggs, grade B (30)",2025-12-08,actual,,12.9,,,
 1110,"Eggs, grade B (30)",2025-12-15,actual,,13.5,,,
@@ -135,15 +134,15 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 1110,"Eggs, grade B (30)",2026-11-02,actual,,14.2,,,
 1110,"Eggs, grade B (30)",2026-11-09,actual,,13.5,,,
 1110,"Eggs, grade B (30)",2026-11-16,actual,,13.09,,,
-1110,"Eggs, grade B (30)",2026-11-23,forecast,naive,13.09,12.57,13.74,False
-1110,"Eggs, grade B (30)",2026-11-30,forecast,naive,13.09,12.11,14.31,False
-1110,"Eggs, grade B (30)",2026-12-07,forecast,naive,13.09,11.77,14.98,False
-1110,"Eggs, grade B (30)",2026-12-14,forecast,naive,13.09,11.22,15.06,False
-1110,"Eggs, grade B (30)",2026-12-21,forecast,naive,13.09,11.1,15.23,False
-1110,"Eggs, grade B (30)",2026-12-28,forecast,naive,13.09,10.85,15.44,False
-1110,"Eggs, grade B (30)",2027-01-04,forecast,naive,13.09,10.92,15.66,False
-1110,"Eggs, grade B (30)",2027-01-11,forecast,naive,13.09,10.92,15.71,False
-1110,"Eggs, grade B (30)",2026-11-23,forecast,seasonal_naive,11.0,10.55,12.48,True
+1110,"Eggs, grade B (30)",2026-11-23,actual,,12.9,,,
+1110,"Eggs, grade B (30)",2026-11-30,forecast,naive,12.9,12.39,13.54,False
+1110,"Eggs, grade B (30)",2026-12-07,forecast,naive,12.9,11.94,14.1,False
+1110,"Eggs, grade B (30)",2026-12-14,forecast,naive,12.9,11.6,14.76,False
+1110,"Eggs, grade B (30)",2026-12-21,forecast,naive,12.9,11.06,14.84,False
+1110,"Eggs, grade B (30)",2026-12-28,forecast,naive,12.9,10.96,15.01,False
+1110,"Eggs, grade B (30)",2027-01-04,forecast,naive,12.9,11.03,15.21,False
+1110,"Eggs, grade B (30)",2027-01-11,forecast,naive,12.9,10.86,15.43,False
+1110,"Eggs, grade B (30)",2027-01-18,forecast,naive,12.9,10.79,15.48,False
 1110,"Eggs, grade B (30)",2026-11-30,forecast,seasonal_naive,11.6,11.13,13.14,True
 1110,"Eggs, grade B (30)",2026-12-07,forecast,seasonal_naive,12.9,12.37,14.51,True
 1110,"Eggs, grade B (30)",2026-12-14,forecast,seasonal_naive,13.5,12.95,15.19,True
@@ -151,22 +150,23 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 1110,"Eggs, grade B (30)",2026-12-28,forecast,seasonal_naive,13.6,13.04,15.42,True
 1110,"Eggs, grade B (30)",2027-01-04,forecast,seasonal_naive,13.5,12.95,15.38,True
 1110,"Eggs, grade B (30)",2027-01-11,forecast,seasonal_naive,13.5,12.96,15.51,True
-1110,"Eggs, grade B (30)",2026-11-23,forecast,ets,12.75,12.28,13.27,False
-1110,"Eggs, grade B (30)",2026-11-30,forecast,ets,12.48,11.74,13.79,False
-1110,"Eggs, grade B (30)",2026-12-07,forecast,ets,12.26,10.97,13.99,False
-1110,"Eggs, grade B (30)",2026-12-14,forecast,ets,12.09,10.4,13.95,False
-1110,"Eggs, grade B (30)",2026-12-21,forecast,ets,11.95,10.03,15.04,False
-1110,"Eggs, grade B (30)",2026-12-28,forecast,ets,11.83,9.73,14.84,False
-1110,"Eggs, grade B (30)",2027-01-04,forecast,ets,11.75,9.6,14.86,False
-1110,"Eggs, grade B (30)",2027-01-11,forecast,ets,11.67,9.45,15.06,False
-1110,"Eggs, grade B (30)",2026-11-23,forecast,holt_winters,12.81,12.34,13.34,False
-1110,"Eggs, grade B (30)",2026-11-30,forecast,holt_winters,12.74,12.0,13.78,False
-1110,"Eggs, grade B (30)",2026-12-07,forecast,holt_winters,12.88,11.62,14.44,False
-1110,"Eggs, grade B (30)",2026-12-14,forecast,holt_winters,12.89,11.2,14.67,False
-1110,"Eggs, grade B (30)",2026-12-21,forecast,holt_winters,12.85,10.84,15.4,False
-1110,"Eggs, grade B (30)",2026-12-28,forecast,holt_winters,12.71,10.52,15.57,False
-1110,"Eggs, grade B (30)",2027-01-04,forecast,holt_winters,12.61,10.31,15.66,False
-1110,"Eggs, grade B (30)",2027-01-11,forecast,holt_winters,12.55,10.39,15.75,False
+1110,"Eggs, grade B (30)",2027-01-18,forecast,seasonal_naive,12.99,12.54,15.09,True
+1110,"Eggs, grade B (30)",2026-11-30,forecast,ets,12.73,12.26,13.25,False
+1110,"Eggs, grade B (30)",2026-12-07,forecast,ets,12.6,11.86,13.92,False
+1110,"Eggs, grade B (30)",2026-12-14,forecast,ets,12.49,11.18,14.25,False
+1110,"Eggs, grade B (30)",2026-12-21,forecast,ets,12.4,10.68,14.32,False
+1110,"Eggs, grade B (30)",2026-12-28,forecast,ets,12.34,10.36,15.53,False
+1110,"Eggs, grade B (30)",2027-01-04,forecast,ets,12.28,10.15,15.4,False
+1110,"Eggs, grade B (30)",2027-01-11,forecast,ets,12.24,10.26,15.48,False
+1110,"Eggs, grade B (30)",2027-01-18,forecast,ets,12.2,10.09,15.74,False
+1110,"Eggs, grade B (30)",2026-11-30,forecast,holt_winters,12.88,12.41,13.41,False
+1110,"Eggs, grade B (30)",2026-12-07,forecast,holt_winters,13.07,12.31,14.13,False
+1110,"Eggs, grade B (30)",2026-12-14,forecast,holt_winters,13.11,11.82,14.69,False
+1110,"Eggs, grade B (30)",2026-12-21,forecast,holt_winters,13.09,11.38,14.9,False
+1110,"Eggs, grade B (30)",2026-12-28,forecast,holt_winters,12.97,11.0,15.55,False
+1110,"Eggs, grade B (30)",2027-01-04,forecast,holt_winters,12.89,10.9,15.79,False
+1110,"Eggs, grade B (30)",2027-01-11,forecast,holt_winters,12.84,10.88,15.94,False
+1110,"Eggs, grade B (30)",2027-01-18,forecast,holt_winters,12.7,10.55,15.93,False
 904,"Rice, Cap Rambutan 5% (10 kg)",2025-11-24,actual,,35.99,,,
 904,"Rice, Cap Rambutan 5% (10 kg)",2025-12-01,actual,,36.5,,,
 904,"Rice, Cap Rambutan 5% (10 kg)",2025-12-08,actual,,36.0,,,
@@ -249,9 +249,8 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 904,"Rice, Cap Rambutan 5% (10 kg)",2026-12-14,forecast,holt_winters,35.97,35.14,37.08,False
 904,"Rice, Cap Rambutan 5% (10 kg)",2026-12-21,forecast,holt_winters,35.78,34.72,36.85,False
 904,"Rice, Cap Rambutan 5% (10 kg)",2026-12-28,forecast,holt_winters,35.4,34.44,36.57,False
-904,"Rice, Cap Rambutan 5% (10 kg)",2027-01-04,forecast,holt_winters,35.07,34.04,36.26,False
+904,"Rice, Cap Rambutan 5% (10 kg)",2027-01-04,forecast,holt_winters,35.07,34.03,36.26,False
 904,"Rice, Cap Rambutan 5% (10 kg)",2027-01-11,forecast,holt_winters,35.18,33.81,36.77,False
-1440,"Big onion, India (1 kg)",2025-11-24,actual,,3.19,,,
 1440,"Big onion, India (1 kg)",2025-12-01,actual,,3.2,,,
 1440,"Big onion, India (1 kg)",2025-12-08,actual,,3.2,,,
 1440,"Big onion, India (1 kg)",2025-12-15,actual,,3.29,,,
@@ -303,15 +302,15 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 1440,"Big onion, India (1 kg)",2026-11-02,actual,,4.0,,,
 1440,"Big onion, India (1 kg)",2026-11-09,actual,,4.0,,,
 1440,"Big onion, India (1 kg)",2026-11-16,actual,,4.2,,,
-1440,"Big onion, India (1 kg)",2026-11-23,forecast,naive,4.2,4.19,4.3,True
-1440,"Big onion, India (1 kg)",2026-11-30,forecast,naive,4.2,4.19,4.48,True
-1440,"Big onion, India (1 kg)",2026-12-07,forecast,naive,4.2,4.14,4.58,True
-1440,"Big onion, India (1 kg)",2026-12-14,forecast,naive,4.2,3.96,4.77,True
-1440,"Big onion, India (1 kg)",2026-12-21,forecast,naive,4.2,3.94,4.88,True
-1440,"Big onion, India (1 kg)",2026-12-28,forecast,naive,4.2,3.86,4.9,True
-1440,"Big onion, India (1 kg)",2027-01-04,forecast,naive,4.2,3.86,4.9,True
-1440,"Big onion, India (1 kg)",2027-01-11,forecast,naive,4.2,3.7,5.39,True
-1440,"Big onion, India (1 kg)",2026-11-23,forecast,seasonal_naive,3.19,1.76,3.67,False
+1440,"Big onion, India (1 kg)",2026-11-23,actual,,4.49,,,
+1440,"Big onion, India (1 kg)",2026-11-30,forecast,naive,4.49,4.48,4.6,True
+1440,"Big onion, India (1 kg)",2026-12-07,forecast,naive,4.49,4.48,4.79,True
+1440,"Big onion, India (1 kg)",2026-12-14,forecast,naive,4.49,4.42,4.9,True
+1440,"Big onion, India (1 kg)",2026-12-21,forecast,naive,4.49,4.23,5.1,True
+1440,"Big onion, India (1 kg)",2026-12-28,forecast,naive,4.49,4.21,5.21,True
+1440,"Big onion, India (1 kg)",2027-01-04,forecast,naive,4.49,4.12,5.24,True
+1440,"Big onion, India (1 kg)",2027-01-11,forecast,naive,4.49,4.12,5.24,True
+1440,"Big onion, India (1 kg)",2027-01-18,forecast,naive,4.49,3.95,5.77,True
 1440,"Big onion, India (1 kg)",2026-11-30,forecast,seasonal_naive,3.2,1.76,3.74,False
 1440,"Big onion, India (1 kg)",2026-12-07,forecast,seasonal_naive,3.2,1.8,4.12,False
 1440,"Big onion, India (1 kg)",2026-12-14,forecast,seasonal_naive,3.29,1.97,4.38,False
@@ -319,23 +318,23 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 1440,"Big onion, India (1 kg)",2026-12-28,forecast,seasonal_naive,3.49,2.1,4.66,False
 1440,"Big onion, India (1 kg)",2027-01-04,forecast,seasonal_naive,3.5,2.16,4.67,False
 1440,"Big onion, India (1 kg)",2027-01-11,forecast,seasonal_naive,3.5,2.27,4.67,False
-1440,"Big onion, India (1 kg)",2026-11-23,forecast,ets,4.22,4.19,4.3,False
-1440,"Big onion, India (1 kg)",2026-11-30,forecast,ets,4.23,4.18,4.51,False
-1440,"Big onion, India (1 kg)",2026-12-07,forecast,ets,4.24,4.16,4.61,False
-1440,"Big onion, India (1 kg)",2026-12-14,forecast,ets,4.25,4.03,4.75,False
-1440,"Big onion, India (1 kg)",2026-12-21,forecast,ets,4.26,4.03,4.95,False
-1440,"Big onion, India (1 kg)",2026-12-28,forecast,ets,4.27,3.87,4.98,False
-1440,"Big onion, India (1 kg)",2027-01-04,forecast,ets,4.28,3.86,5.01,False
-1440,"Big onion, India (1 kg)",2027-01-11,forecast,ets,4.29,3.71,5.51,False
-1440,"Big onion, India (1 kg)",2026-11-23,forecast,holt_winters,4.46,4.33,4.71,False
-1440,"Big onion, India (1 kg)",2026-11-30,forecast,holt_winters,4.52,4.27,5.03,False
-1440,"Big onion, India (1 kg)",2026-12-07,forecast,holt_winters,4.65,4.35,5.38,False
-1440,"Big onion, India (1 kg)",2026-12-14,forecast,holt_winters,4.66,4.36,5.53,False
-1440,"Big onion, India (1 kg)",2026-12-21,forecast,holt_winters,4.49,4.2,5.34,False
-1440,"Big onion, India (1 kg)",2026-12-28,forecast,holt_winters,4.99,4.59,6.02,False
-1440,"Big onion, India (1 kg)",2027-01-04,forecast,holt_winters,4.99,4.56,6.11,False
-1440,"Big onion, India (1 kg)",2027-01-11,forecast,holt_winters,4.99,4.49,6.24,False
-94,Red chilli (1 kg),2025-11-24,actual,,14.0,,,
+1440,"Big onion, India (1 kg)",2027-01-18,forecast,seasonal_naive,3.49,2.28,4.67,False
+1440,"Big onion, India (1 kg)",2026-11-30,forecast,ets,4.52,4.49,4.61,False
+1440,"Big onion, India (1 kg)",2026-12-07,forecast,ets,4.54,4.49,4.85,False
+1440,"Big onion, India (1 kg)",2026-12-14,forecast,ets,4.56,4.48,4.95,False
+1440,"Big onion, India (1 kg)",2026-12-21,forecast,ets,4.58,4.34,5.11,False
+1440,"Big onion, India (1 kg)",2026-12-28,forecast,ets,4.6,4.34,5.34,False
+1440,"Big onion, India (1 kg)",2027-01-04,forecast,ets,4.62,4.18,5.39,False
+1440,"Big onion, India (1 kg)",2027-01-11,forecast,ets,4.63,4.17,5.42,False
+1440,"Big onion, India (1 kg)",2027-01-18,forecast,ets,4.64,4.01,5.96,False
+1440,"Big onion, India (1 kg)",2026-11-30,forecast,holt_winters,4.55,4.42,4.81,False
+1440,"Big onion, India (1 kg)",2026-12-07,forecast,holt_winters,4.68,4.42,5.21,False
+1440,"Big onion, India (1 kg)",2026-12-14,forecast,holt_winters,4.69,4.38,5.42,False
+1440,"Big onion, India (1 kg)",2026-12-21,forecast,holt_winters,4.52,4.24,5.37,False
+1440,"Big onion, India (1 kg)",2026-12-28,forecast,holt_winters,5.02,4.7,5.98,False
+1440,"Big onion, India (1 kg)",2027-01-04,forecast,holt_winters,5.03,4.62,6.06,False
+1440,"Big onion, India (1 kg)",2027-01-11,forecast,holt_winters,5.02,4.58,6.15,False
+1440,"Big onion, India (1 kg)",2027-01-18,forecast,holt_winters,5.01,4.51,6.27,False
 94,Red chilli (1 kg),2025-12-01,actual,,16.0,,,
 94,Red chilli (1 kg),2025-12-08,actual,,18.0,,,
 94,Red chilli (1 kg),2025-12-15,actual,,19.9,,,
@@ -387,15 +386,15 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 94,Red chilli (1 kg),2026-11-02,actual,,13.99,,,
 94,Red chilli (1 kg),2026-11-09,actual,,13.5,,,
 94,Red chilli (1 kg),2026-11-16,actual,,12.99,,,
-94,Red chilli (1 kg),2026-11-23,forecast,naive,12.99,11.83,14.42,False
-94,Red chilli (1 kg),2026-11-30,forecast,naive,12.99,11.25,15.89,False
-94,Red chilli (1 kg),2026-12-07,forecast,naive,12.99,11.03,16.77,False
-94,Red chilli (1 kg),2026-12-14,forecast,naive,12.99,9.99,16.78,False
-94,Red chilli (1 kg),2026-12-21,forecast,naive,12.99,9.94,16.87,False
-94,Red chilli (1 kg),2026-12-28,forecast,naive,12.99,9.76,17.88,False
-94,Red chilli (1 kg),2027-01-04,forecast,naive,12.99,8.67,17.96,False
-94,Red chilli (1 kg),2027-01-11,forecast,naive,12.99,8.44,18.44,False
-94,Red chilli (1 kg),2026-11-23,forecast,seasonal_naive,14.0,11.87,17.63,True
+94,Red chilli (1 kg),2026-11-23,actual,,12.99,,,
+94,Red chilli (1 kg),2026-11-30,forecast,naive,12.99,11.83,14.42,False
+94,Red chilli (1 kg),2026-12-07,forecast,naive,12.99,11.25,15.89,False
+94,Red chilli (1 kg),2026-12-14,forecast,naive,12.99,11.03,16.77,False
+94,Red chilli (1 kg),2026-12-21,forecast,naive,12.99,9.99,16.78,False
+94,Red chilli (1 kg),2026-12-28,forecast,naive,12.99,9.94,16.87,False
+94,Red chilli (1 kg),2027-01-04,forecast,naive,12.99,9.76,17.88,False
+94,Red chilli (1 kg),2027-01-11,forecast,naive,12.99,8.67,17.96,False
+94,Red chilli (1 kg),2027-01-18,forecast,naive,12.99,8.44,18.44,False
 94,Red chilli (1 kg),2026-11-30,forecast,seasonal_naive,16.0,13.57,20.15,True
 94,Red chilli (1 kg),2026-12-07,forecast,seasonal_naive,18.0,15.27,22.67,True
 94,Red chilli (1 kg),2026-12-14,forecast,seasonal_naive,19.9,16.88,25.06,True
@@ -403,19 +402,20 @@ item_code,item,week_start,kind,model,price,low_80,high_80,is_best
 94,Red chilli (1 kg),2026-12-28,forecast,seasonal_naive,18.0,15.27,22.67,True
 94,Red chilli (1 kg),2027-01-04,forecast,seasonal_naive,19.99,16.95,25.18,True
 94,Red chilli (1 kg),2027-01-11,forecast,seasonal_naive,19.99,16.96,25.18,True
-94,Red chilli (1 kg),2026-11-23,forecast,ets,12.98,11.82,14.4,False
-94,Red chilli (1 kg),2026-11-30,forecast,ets,12.97,11.13,15.86,False
-94,Red chilli (1 kg),2026-12-07,forecast,ets,12.97,10.99,16.78,False
-94,Red chilli (1 kg),2026-12-14,forecast,ets,12.96,9.97,16.75,False
-94,Red chilli (1 kg),2026-12-21,forecast,ets,12.96,9.92,16.92,False
-94,Red chilli (1 kg),2026-12-28,forecast,ets,12.96,9.74,17.85,False
-94,Red chilli (1 kg),2027-01-04,forecast,ets,12.96,8.65,18.01,False
-94,Red chilli (1 kg),2027-01-11,forecast,ets,12.95,8.41,18.4,False
-94,Red chilli (1 kg),2026-11-23,forecast,holt_winters,13.26,11.84,14.47,False
-94,Red chilli (1 kg),2026-11-30,forecast,holt_winters,14.01,12.27,16.13,False
-94,Red chilli (1 kg),2026-12-07,forecast,holt_winters,14.92,12.57,17.47,False
-94,Red chilli (1 kg),2026-12-14,forecast,holt_winters,15.23,12.47,17.58,False
-94,Red chilli (1 kg),2026-12-21,forecast,holt_winters,13.8,11.34,16.65,False
-94,Red chilli (1 kg),2026-12-28,forecast,holt_winters,14.87,11.49,18.61,False
-94,Red chilli (1 kg),2027-01-04,forecast,holt_winters,15.08,11.07,18.45,False
-94,Red chilli (1 kg),2027-01-11,forecast,holt_winters,14.75,9.9,18.39,False
+94,Red chilli (1 kg),2027-01-18,forecast,seasonal_naive,20.0,16.97,25.19,True
+94,Red chilli (1 kg),2026-11-30,forecast,ets,12.98,11.82,14.41,False
+94,Red chilli (1 kg),2026-12-07,forecast,ets,12.98,11.13,15.87,False
+94,Red chilli (1 kg),2026-12-14,forecast,ets,12.97,10.99,16.79,False
+94,Red chilli (1 kg),2026-12-21,forecast,ets,12.97,9.98,16.76,False
+94,Red chilli (1 kg),2026-12-28,forecast,ets,12.97,9.93,16.93,False
+94,Red chilli (1 kg),2027-01-04,forecast,ets,12.97,9.74,17.86,False
+94,Red chilli (1 kg),2027-01-11,forecast,ets,12.96,8.66,18.02,False
+94,Red chilli (1 kg),2027-01-18,forecast,ets,12.96,8.42,18.41,False
+94,Red chilli (1 kg),2026-11-30,forecast,holt_winters,13.74,12.27,14.99,False
+94,Red chilli (1 kg),2026-12-07,forecast,holt_winters,14.66,12.84,16.87,False
+94,Red chilli (1 kg),2026-12-14,forecast,holt_winters,14.96,12.61,17.51,False
+94,Red chilli (1 kg),2026-12-21,forecast,holt_winters,13.53,11.09,15.62,False
+94,Red chilli (1 kg),2026-12-28,forecast,holt_winters,14.6,12.0,17.62,False
+94,Red chilli (1 kg),2027-01-04,forecast,holt_winters,14.82,11.46,18.55,False
+94,Red chilli (1 kg),2027-01-11,forecast,holt_winters,14.49,10.64,17.72,False
+94,Red chilli (1 kg),2027-01-18,forecast,holt_winters,14.34,9.62,17.88,False
