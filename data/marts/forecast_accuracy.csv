@@ -6,7 +6,7 @@ item_code,item,model,horizon,mape,n,is_best
 1,"Chicken (standard, 1 kg)",ets,5,5.17,52,False
 1,"Chicken (standard, 1 kg)",ets,6,5.83,52,False
 1,"Chicken (standard, 1 kg)",ets,7,6.25,52,False
-1,"Chicken (standard, 1 kg)",ets,8,6.55,52,False
+1,"Chicken (standard, 1 kg)",ets,8,6.53,52,False
 1,"Chicken (standard, 1 kg)",holt_winters,1,2.68,52,False
 1,"Chicken (standard, 1 kg)",holt_winters,2,4.43,52,False
 1,"Chicken (standard, 1 kg)",holt_winters,3,5.57,52,False
@@ -14,7 +14,7 @@ item_code,item,model,horizon,mape,n,is_best
 1,"Chicken (standard, 1 kg)",holt_winters,5,7.24,52,False
 1,"Chicken (standard, 1 kg)",holt_winters,6,8.1,52,False
 1,"Chicken (standard, 1 kg)",holt_winters,7,8.72,52,False
-1,"Chicken (standard, 1 kg)",holt_winters,8,9.22,52,False
+1,"Chicken (standard, 1 kg)",holt_winters,8,9.19,52,False
 1,"Chicken (standard, 1 kg)",naive,1,1.54,52,True
 1,"Chicken (standard, 1 kg)",naive,2,2.71,52,True
 1,"Chicken (standard, 1 kg)",naive,3,3.65,52,True
@@ -22,7 +22,7 @@ item_code,item,model,horizon,mape,n,is_best
 1,"Chicken (standard, 1 kg)",naive,5,5.17,52,True
 1,"Chicken (standard, 1 kg)",naive,6,5.83,52,True
 1,"Chicken (standard, 1 kg)",naive,7,6.25,52,True
-1,"Chicken (standard, 1 kg)",naive,8,6.55,52,True
+1,"Chicken (standard, 1 kg)",naive,8,6.53,52,True
 1,"Chicken (standard, 1 kg)",seasonal_naive,1,7.74,52,False
 1,"Chicken (standard, 1 kg)",seasonal_naive,2,7.76,52,False
 1,"Chicken (standard, 1 kg)",seasonal_naive,3,7.67,52,False
@@ -30,11 +30,11 @@ item_code,item,model,horizon,mape,n,is_best
 1,"Chicken (standard, 1 kg)",seasonal_naive,5,8.09,52,False
 1,"Chicken (standard, 1 kg)",seasonal_naive,6,8.18,52,False
 1,"Chicken (standard, 1 kg)",seasonal_naive,7,8.23,52,False
-1,"Chicken (standard, 1 kg)",seasonal_naive,8,8.23,52,False
+1,"Chicken (standard, 1 kg)",seasonal_naive,8,8.21,52,False
 1,"Chicken (standard, 1 kg)",ets,1-8,4.52,416,False
 1,"Chicken (standard, 1 kg)",holt_winters,1-8,6.55,416,False
 1,"Chicken (standard, 1 kg)",naive,1-8,4.52,416,True
-1,"Chicken (standard, 1 kg)",seasonal_naive,1-8,7.97,416,False
+1,"Chicken (standard, 1 kg)",seasonal_naive,1-8,7.96,416,False
 1110,"Eggs, grade B (30)",ets,1,2.26,52,False
 1110,"Eggs, grade B (30)",ets,2,4.92,52,False
 1110,"Eggs, grade B (30)",ets,3,7.34,52,False
